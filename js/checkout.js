@@ -173,41 +173,83 @@ function copyToClipboard(text, btn) {
 
 // Initialize Checkout Form
 function initCheckoutForm() {
+  
   const form = document.getElementById('checkoutForm');
   if (!form) return;
 
-  if (paymentMethod === 'paystack') {
-  window.location.href = 'https://paystack.com/pay/YOUR_PAYSTACK_LINK';
-  return;
-}
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-if (paymentMethod === 'payu') {
-  window.location.href = 'https://YOUR_PAYU_LINK';
-  return;
-}
-  
+    if (Cart.items.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    const paymentMethod = document.querySelector(
+      'input[name="payment"]:checked'
+    ).value;
+
+    const orderNumber = 'LUXE-' + Date.now().toString().slice(-8);
+
+    // =====================
+    // PAYSTACK REDIRECT
+    // =====================
+    if (paymentMethod === 'paystack') {
+      window.location.href = 'https://paystack.com/pay/YOUR_PAYSTACK_LINK';
+      return;
+    }
+
+    // =====================
+    // PAYU REDIRECT
+    // =====================
+    if (paymentMethod === 'payu') {
+      window.location.href = 'https://YOUR_PAYU_LINK';
+      return;
+    }
+
+    // =====================
+    // BANK / WIRE → WHATSAPP
+    // =====================
+
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+    const apartment = document.getElementById("apartment").value || "";
+    const city = document.getElementById("city").value;
+    const postalCode = document.getElementById("postalCode").value;
+    const country = document.getElementById("country").value;
+
+    const total = formatPrice(Cart.getTotal());
+
+    let orderItemsText = "";
+    Cart.items.forEach((item, idx) => {
+      orderItemsText += `${idx + 1}. ${item.name} - Size: ${item.size}, Color: ${item.color}, Qty: ${item.quantity}, Price: ${formatPrice(item.price * item.quantity)}\n`;
+    });
+
+    let message = `*New Order*\n\n`;
+    message += `*Order Number:* ${orderNumber}\n\n`;
+    message += `*Customer Info*\n`;
+    message += `Name: ${firstName} ${lastName}\n`;
+    message += `Email: ${email}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Address: ${address} ${apartment}, ${city}, ${postalCode}, ${country}\n\n`;
+    message += `*Order Items*\n${orderItemsText}\n`;
+    message += `*Total:* ${total}\n`;
+    message += `*Payment Method:* ${paymentMethod}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = "2349074027996";
+
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     
     // Generate order number
     const orderNumber = 'LUXE-' + Date.now().toString().slice(-8);
-    
-    // Get form data
-    const formData = {
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      address: document.getElementById('address').value,
-      apartment: document.getElementById('apartment').value,
-      city: document.getElementById('city').value,
-      postalCode: document.getElementById('postalCode').value,
-      country: document.getElementById('country').value,
-      paymentMethod: document.querySelector('input[name="payment"]:checked').value,
-      orderNumber,
-      items: Cart.items,
-      total: Cart.getTotal()
-    };
     
     // Save order to localStorage
     localStorage.setItem('luxe-last-order', JSON.stringify(formData));
