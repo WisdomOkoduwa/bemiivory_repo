@@ -136,49 +136,84 @@
 </div>
 
             <!-- Payment Method -->
-            <div>
-              <h2 class="text-lg font-medium mb-4">Payment Method</h2>
-              <div class="space-y-3">
-                <!-- Bank Transfer -->
-                <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
-                  <input type="radio" name="payment" value="bank-transfer" class="mt-1" checked>
-                  <div class="flex-1">
-                    <div class="flex items-center gap-2">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                      </svg>
-                      <span class="font-medium">Bank Transfer (Domestic)</span>
-                    </div>
-                    <p class="text-sm text-muted-foreground mt-1">Transfer to our local bank account</p>
-                  </div>
-                </label>
+<div>
+  <h2 class="text-lg font-medium mb-4">Payment Method</h2>              
+  <div class="space-y-3">
 
-                <!-- Wire Transfer -->
-                <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
-                  <input type="radio" name="payment" value="wire-transfer" class="mt-1">
-                  <div class="flex-1">
-                    <div class="flex items-center gap-2">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <span class="font-medium">Wire Transfer (International)</span>
-                    </div>
-                    <p class="text-sm text-muted-foreground mt-1">International wire transfer with SWIFT</p>
-                  </div>
-                </label>
-              </div>
+    <!-- Bank Transfer -->
+    <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+      <input type="radio" name="payment" value="bank-transfer" class="mt-1" checked>
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+          <span class="font-medium">Bank Transfer (Domestic)</span>
+        </div>
+        <p class="text-sm text-muted-foreground mt-1">Transfer to our local bank account</p>
+      </div>
+    </label>
 
-              <!-- Bank Details -->
-              <div id="bankDetails" class="mt-4 p-4 bg-secondary rounded-lg">
-                <h3 class="font-medium mb-3">Bank Account Details</h3>
-                <div id="bankInfo" class="space-y-2 text-sm">
-                  <!-- Bank details inserted by JS -->
-                </div>
-                <p class="text-xs text-muted-foreground mt-4">
-                  Please include your order number as payment reference. Orders are processed within 24 hours of payment confirmation.
-                </p>
-              </div>
-            </div>
+    <!-- Wire Transfer -->
+    <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+      <input type="radio" name="payment" value="wire-transfer" class="mt-1">
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="font-medium">Wire Transfer (International)</span>
+        </div>
+        <p class="text-sm text-muted-foreground mt-1">International wire transfer with SWIFT</p>
+      </div>
+    </label>
+
+    <!-- Paystack -->
+    <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+      <input type="radio" name="payment" value="paystack" class="mt-1">
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          <span class="font-medium">Paystack</span>
+        </div>
+        <p class="text-sm text-muted-foreground mt-1">Pay with card, bank transfer or USSD</p>
+      </div>
+    </label>
+
+    <!-- PayU -->
+    <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+      <input type="radio" name="payment" value="payu" class="mt-1">
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M12 6v6l4 2"/>
+          </svg>
+          <span class="font-medium">PayU</span>
+        </div>
+        <p class="text-sm text-muted-foreground mt-1">Secure international payment</p>
+      </div>
+    </label>
+
+  </div>
+
+  <!-- Bank Details (ONLY for transfers) -->
+  <div id="bankDetails" class="mt-4 p-4 bg-secondary rounded-lg">
+    <h3 class="font-medium mb-3">Bank Account Details</h3>
+    <div id="bankInfo" class="space-y-2 text-sm"></div>
+    <p class="text-xs text-muted-foreground mt-4">
+      Please include your order number as payment reference.
+    </p>
+  </div>
+</div>
+
 
             <button id="completeOrderBtn" type="submit" class="w-full bg-foreground text-cream py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
   Complete Order
