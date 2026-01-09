@@ -256,62 +256,6 @@
     </div>
   </footer>
 
-  <!-- extra script to whatsapp -->
-
-  <script>
-  document.getElementById("checkoutForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    if (Cart.items.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
-
-    // Capture customer info
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
-    const apartment = document.getElementById("apartment").value || "";
-    const city = document.getElementById("city").value;
-    const postalCode = document.getElementById("postalCode").value;
-    const country = document.getElementById("country").value;
-
-    // Total
-    const total = formatPrice(Cart.getTotal());
-
-    // Prepare ordered items text
-    let orderItemsText = "";
-    Cart.items.forEach((item, idx) => {
-      orderItemsText += `${idx + 1}. ${item.name} - Size: ${item.size}, Color: ${item.color}, Qty: ${item.quantity}, Price: ${formatPrice(item.price * item.quantity)}\n`;
-    });
-
-    // Construct WhatsApp message
-    let message = `*New Order*\n\n`;
-    message += `*Customer Info*\n`;
-    message += `Name: ${firstName} ${lastName}\n`;
-    message += `Email: ${email}\n`;
-    message += `Phone: ${phone}\n`;
-    message += `Address: ${address} ${apartment}, ${city}, ${postalCode}, ${country}\n\n`;
-    message += `*Order Items*\n${orderItemsText}\n`;
-    message += `*Total:* ${total}`;
-
-    // Encode message
-    const encodedMessage = encodeURIComponent(message);
-
-    // WhatsApp number (replace with yours)
-    const whatsappNumber = "2349074027996";
-
-    // Open WhatsApp chat
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
-  });
-  </script>
-
-
-
-
-
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/checkout.js"></script>
