@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product | Luxury Fashion</title>
+  <meta name="description" content="View product details">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(30, 20%, 88%)',
+            background: 'hsl(40, 33%, 98%)',
+            foreground: 'hsl(30, 15%, 15%)',
+            primary: { DEFAULT: 'hsl(30, 15%, 15%)', foreground: 'hsl(40, 33%, 98%)' },
+            secondary: { DEFAULT: 'hsl(30, 20%, 96%)', foreground: 'hsl(30, 15%, 25%)' },
+            muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
+            accent: { DEFAULT: 'hsl(35, 45%, 45%)', foreground: 'hsl(40, 33%, 98%)' },
+            gold: 'hsl(35, 45%, 45%)',
+            cream: 'hsl(40, 33%, 98%)',
+            charcoal: 'hsl(30, 15%, 15%)',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+
+  <!-- Announcement Bar -->
+  <div class="bg-foreground text-cream py-2.5 text-center">
+    <p class="text-xs tracking-[0.2em] uppercase font-light">
+      Worldwide Shipping • Limited Pieces Available
+    </p>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="index.html" class="inline-block">
+    <img src="images/bemi_logo.jpg" alt="Bemi Ivory Logo" class="h-16 md:h-20 w-auto object-contain">
+  </a>
+
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-sm tracking-wide hover:text-accent transition-colors">Home</a>
+          <a href="shop.html" class="text-sm tracking-wide hover:text-accent transition-colors">Shop</a>
+          <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent transition-colors">New Arrivals</a>
+          <a href="shop.html?category=bestsellers" class="text-sm tracking-wide hover:text-accent transition-colors">Bestsellers</a>
+        </nav>
+
+        <div class="flex items-center space-x-4">
+          <button class="p-2 hover:text-accent transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+          <button id="cartBtn" class="p-2 hover:text-accent transition-colors relative">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+          </button>
+          <button id="mobileMenuBtn" class="md:hidden p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t border-border">
+      <nav class="container mx-auto px-4 py-4 space-y-4">
+        <a href="index.html" class="block text-sm tracking-wide">Home</a>
+        <a href="shop.html" class="block text-sm tracking-wide">Shop</a>
+        <a href="shop.html?category=new" class="block text-sm tracking-wide">New Arrivals</a>
+        <a href="shop.html?category=bestsellers" class="block text-sm tracking-wide">Bestsellers</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="container mx-auto px-4 md:px-6 py-4">
+    <nav class="text-sm text-muted-foreground">
+      <a href="index.html" class="hover:text-foreground">Home</a>
+      <span class="mx-2">/</span>
+      <a href="shop.html" class="hover:text-foreground">Shop</a>
+      <span class="mx-2">/</span>
+      <span id="breadcrumbProduct" class="text-foreground">Product</span>
+    </nav>
+  </div>
+
+  <!-- Product Detail -->
+  <section class="pb-16 md:pb-24">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
+        <!-- Product Images -->
+        <div class="space-y-4">
+          <div class="aspect-[3/4] overflow-hidden bg-secondary">
+            <img id="mainImage" src="" alt="" class="w-full h-full object-cover">
+          </div>
+          <div id="thumbnails" class="grid grid-cols-4 gap-2">
+            <!-- Thumbnails inserted by JS -->
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="space-y-6">
+          <div>
+            <p id="productCategory" class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2"></p>
+            <h1 id="productName" class="font-display text-2xl md:text-3xl mb-2"></h1>
+            <p id="productPrice" class="text-xl"></p>
+          </div>
+
+          <p id="productDescription" class="text-muted-foreground leading-relaxed"></p>
+
+          <!-- Size Selection -->
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-sm font-medium">Size</span>
+              <button class="text-sm text-muted-foreground hover:text-foreground underline">Size Guide</button>
+            </div>
+            <div id="sizeOptions" class="flex flex-wrap gap-2">
+              <!-- Size buttons inserted by JS -->
+            </div>
+          </div>
+
+          <!-- Color Selection -->
+          <div>
+            <span class="text-sm font-medium block mb-3">Color: <span id="selectedColorName"></span></span>
+            <div id="colorOptions" class="flex gap-2">
+              <!-- Color buttons inserted by JS -->
+            </div>
+          </div>
+
+          <!-- Add to Cart -->
+          <button id="addToCartBtn" class="w-full bg-foreground text-cream py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
+            Add to Bag
+          </button>
+
+          <!-- Product Details Accordion -->
+          <div class="border-t border-border pt-6 space-y-4">
+            <details class="group">
+              <summary class="flex justify-between items-center cursor-pointer py-2">
+                <span class="text-sm font-medium">Product Details</span>
+                <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <div id="productDetails" class="text-sm text-muted-foreground py-2"></div>
+            </details>
+            <details class="group border-t border-border">
+              <summary class="flex justify-between items-center cursor-pointer py-2">
+                <span class="text-sm font-medium">Shipping & Returns</span>
+                <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <div class="text-sm text-muted-foreground py-2">
+                <p>Free worldwide shipping on orders over $200. Standard delivery 5-7 business days.</p>
+                <p class="mt-2">Free returns within 30 days of purchase.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="py-16 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-2xl text-center mb-8">You May Also Like</h2>
+      <div id="relatedProducts" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <!-- Related products inserted by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-cream py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <h3 class="font-display text-xl mb-4">LUXE</h3>
+          <p class="text-cream/70 text-sm">Crafting timeless elegance for the modern woman.</p>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">Shop</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="shop.html?category=new" class="hover:text-cream transition-colors">New Arrivals</a></li>
+            <li><a href="shop.html?category=dresses" class="hover:text-cream transition-colors">Dresses</a></li>
+            <li><a href="shop.html?category=tops" class="hover:text-cream transition-colors">Tops</a></li>
+            <li><a href="shop.html?category=accessories" class="hover:text-cream transition-colors">Accessories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">Help</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="#" class="hover:text-cream transition-colors">Shipping Info</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Returns</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Size Guide</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">About</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="#" class="hover:text-cream transition-colors">Our Story</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Sustainability</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-cream/50">
+        <p>&copy; 2024 LUXE. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-cream transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-cream transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="cartOverlay" class="absolute inset-0 bg-black/50"></div>
+    <div id="cartPanel" class="absolute right-0 top-0 h-full w-full max-w-md bg-background transform translate-x-full transition-transform duration-300">
+      <div class="flex flex-col h-full">
+        <div class="flex items-center justify-between p-6 border-b border-border">
+          <h2 class="font-display text-xl">Shopping Bag</h2>
+          <button id="closeCart" class="p-2 hover:text-accent transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="cartItems" class="flex-1 overflow-y-auto p-6"></div>
+        <div id="cartFooter" class="border-t border-border p-6 hidden">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartTotal" class="font-medium">$0.00</span>
+          </div>
+          <a href="checkout.html" class="block w-full bg-foreground text-cream text-center py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
+            Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/product-detail.js"></script>
+</body>
+</html>

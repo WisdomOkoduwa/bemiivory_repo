@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Luxury Fashion</title>
+  <meta name="description" content="Complete your purchase">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(30, 20%, 88%)',
+            background: 'hsl(40, 33%, 98%)',
+            foreground: 'hsl(30, 15%, 15%)',
+            primary: { DEFAULT: 'hsl(30, 15%, 15%)', foreground: 'hsl(40, 33%, 98%)' },
+            secondary: { DEFAULT: 'hsl(30, 20%, 96%)', foreground: 'hsl(30, 15%, 25%)' },
+            muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
+            accent: { DEFAULT: 'hsl(35, 45%, 45%)', foreground: 'hsl(40, 33%, 98%)' },
+            gold: 'hsl(35, 45%, 45%)',
+            cream: 'hsl(40, 33%, 98%)',
+            charcoal: 'hsl(30, 15%, 15%)',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+
+  <!-- Header -->
+  <header class="border-b border-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="index.html" class="inline-block">
+        <img src="images/bemi_logo.jpg" alt="Bemi Ivory Logo" class="h-16 md:h-20 w-auto object-contain">
+      </a>
+        <span class="text-sm text-muted-foreground">Secure Checkout</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Content -->
+  <main class="py-8 md:py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <!-- Back Link -->
+      <a href="shop.html" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Continue Shopping
+      </a>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Checkout Form -->
+        <div>
+          <h1 class="font-display text-2xl md:text-3xl mb-8">Checkout</h1>
+
+          <form id="checkoutForm" class="space-y-8">
+            <!-- Contact Information -->
+            <div>
+              <h2 class="text-lg font-medium mb-4">Contact Information</h2>
+              <div class="space-y-4">
+                <input type="email" id="email" placeholder="Email address" required
+                  class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                <input type="tel" id="phone" placeholder="Phone number" required
+                  class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+              </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <div>
+              <h2 class="text-lg font-medium mb-4">Shipping Address</h2>
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <input type="text" id="firstName" placeholder="First name" required
+                    class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                  <input type="text" id="lastName" placeholder="Last name" required
+                    class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                </div>
+                <input type="text" id="address" placeholder="Address" required
+                  class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                <input type="text" id="apartment" placeholder="Apartment, suite, etc. (optional)"
+                  class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                <div class="grid grid-cols-2 gap-4">
+                  <input type="text" id="city" placeholder="City" required
+                    class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                  <input type="text" id="postalCode" placeholder="Postal code" required
+                    class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+                </div>
+
+    <select id="country" required
+    class="w-full px-4 py-3 border border-border bg-transparent focus:outline-none focus:border-foreground">
+    <option value="">Select country</option>
+    <option value="NG">Nigeria</option>
+    <option value="GH">Ghana</option>
+    <option value="US">United States</option>
+    <option value="CA">Canada</option>
+    <option value="UK">United Kingdom</option>
+    <option value="AU">Australia</option>
+    <option value="DE">Germany</option>
+    <option value="FR">France</option>
+    <option value="IT">Italy</option>
+    <option value="ES">Spain</option>
+    <option value="NL">Netherlands</option>
+    <option value="BE">Belgium</option>
+    <option value="CH">Switzerland</option>
+    <option value="SE">Sweden</option>
+    <option value="NO">Norway</option>
+    <option value="DK">Denmark</option>
+    <option value="FI">Finland</option>
+    <option value="JP">Japan</option>
+    <option value="CN">China</option>
+    <option value="IN">India</option>
+    <option value="BR">Brazil</option>
+    <option value="MX">Mexico</option>
+    <option value="ZA">South Africa</option>
+    <option value="NZ">New Zealand</option>
+    <option value="SG">Singapore</option>
+    <option value="KR">South Korea</option>
+    <option value="AE">United Arab Emirates</option>
+    <option value="RU">Russia</option>
+  </select>
+
+    </div>
+</div>
+
+            <!-- Payment Method -->
+            <div>
+              <h2 class="text-lg font-medium mb-4">Payment Method</h2>
+              <div class="space-y-3">
+                <!-- Bank Transfer -->
+                <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+                  <input type="radio" name="payment" value="bank-transfer" class="mt-1" checked>
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                      </svg>
+                      <span class="font-medium">Bank Transfer (Domestic)</span>
+                    </div>
+                    <p class="text-sm text-muted-foreground mt-1">Transfer to our local bank account</p>
+                  </div>
+                </label>
+
+                <!-- Wire Transfer -->
+                <label class="flex items-start gap-4 p-4 border border-border cursor-pointer hover:border-foreground transition-colors payment-option">
+                  <input type="radio" name="payment" value="wire-transfer" class="mt-1">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <span class="font-medium">Wire Transfer (International)</span>
+                    </div>
+                    <p class="text-sm text-muted-foreground mt-1">International wire transfer with SWIFT</p>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Bank Details -->
+              <div id="bankDetails" class="mt-4 p-4 bg-secondary rounded-lg">
+                <h3 class="font-medium mb-3">Bank Account Details</h3>
+                <div id="bankInfo" class="space-y-2 text-sm">
+                  <!-- Bank details inserted by JS -->
+                </div>
+                <p class="text-xs text-muted-foreground mt-4">
+                  Please include your order number as payment reference. Orders are processed within 24 hours of payment confirmation.
+                </p>
+              </div>
+            </div>
+
+            <button id="completeOrderBtn" type="submit" class="w-full bg-foreground text-cream py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
+  Complete Order
+</button>
+
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:pl-8 lg:border-l border-border">
+          <h2 class="font-display text-xl mb-6">Order Summary</h2>
+
+          <div id="orderItems" class="space-y-4 mb-6">
+            <!-- Order items inserted by JS -->
+          </div>
+
+          <div class="border-t border-border pt-4 space-y-2">
+            <div class="flex justify-between text-sm">
+              <span class="text-muted-foreground">Subtotal</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-muted-foreground">Shipping</span>
+              <span id="shipping">Calculated at next step</span>
+            </div>
+            <div class="flex justify-between text-lg font-medium pt-2 border-t border-border">
+              <span>Total</span>
+              <span id="total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-border py-8 mt-12">
+    <div class="container mx-auto px-4 md:px-6 text-center text-sm text-muted-foreground">
+      <p>&copy; 2024 LUXE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- extra script to whatsapp -->
+
+  <script>
+  document.getElementById("checkoutForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    if (Cart.items.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    // Capture customer info
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+    const apartment = document.getElementById("apartment").value || "";
+    const city = document.getElementById("city").value;
+    const postalCode = document.getElementById("postalCode").value;
+    const country = document.getElementById("country").value;
+
+    // Total
+    const total = formatPrice(Cart.getTotal());
+
+    // Prepare ordered items text
+    let orderItemsText = "";
+    Cart.items.forEach((item, idx) => {
+      orderItemsText += `${idx + 1}. ${item.name} - Size: ${item.size}, Color: ${item.color}, Qty: ${item.quantity}, Price: ${formatPrice(item.price * item.quantity)}\n`;
+    });
+
+    // Construct WhatsApp message
+    let message = `*New Order*\n\n`;
+    message += `*Customer Info*\n`;
+    message += `Name: ${firstName} ${lastName}\n`;
+    message += `Email: ${email}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Address: ${address} ${apartment}, ${city}, ${postalCode}, ${country}\n\n`;
+    message += `*Order Items*\n${orderItemsText}\n`;
+    message += `*Total:* ${total}`;
+
+    // Encode message
+    const encodedMessage = encodeURIComponent(message);
+
+    // WhatsApp number (replace with yours)
+    const whatsappNumber = "2349074027996";
+
+    // Open WhatsApp chat
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  });
+  </script>
+
+
+
+
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

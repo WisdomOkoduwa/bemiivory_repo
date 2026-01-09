@@ -1,0 +1,144 @@
+/* Custom Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+/* Filter button active state */
+.filter-btn.active {
+  background-color: hsl(30, 15%, 15%);
+  color: hsl(40, 33%, 98%);
+  border-color: hsl(30, 15%, 15%);
+}
+
+/* Size button states */
+.size-btn {
+  min-width: 48px;
+  padding: 12px 16px;
+  border: 1px solid hsl(30, 20%, 88%);
+  transition: all 0.2s;
+}
+
+.size-btn:hover:not(.active):not(:disabled) {
+  border-color: hsl(30, 15%, 15%);
+}
+
+.size-btn.active {
+  background-color: hsl(30, 15%, 15%);
+  color: hsl(40, 33%, 98%);
+  border-color: hsl(30, 15%, 15%);
+}
+
+.size-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Color swatch */
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.active {
+  border-color: hsl(30, 15%, 15%);
+  box-shadow: 0 0 0 2px hsl(40, 33%, 98%), 0 0 0 4px hsl(30, 15%, 15%);
+}
+
+/* Payment option active state */
+.payment-option:has(input:checked) {
+  border-color: hsl(30, 15%, 15%);
+  background-color: hsl(30, 20%, 96%);
+}
+
+/* Product card hover effect */
+.product-card:hover .product-image {
+  transform: scale(1.5);
+}
+
+.product-image {
+  transition: transform 2.0s ease;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: hsl(30, 15%, 15%);
+  color: hsl(40, 33%, 98%);
+  padding: 16px 24px;
+  border-radius: 4px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(30, 20%, 96%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(30, 20%, 75%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(30, 15%, 55%);
+}
+
+/* Copy button feedback */
+.copy-btn.copied {
+  color: hsl(142, 76%, 36%);
+}
