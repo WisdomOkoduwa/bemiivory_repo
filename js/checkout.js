@@ -48,14 +48,21 @@ function renderOrderSummary() {
 // Initialize Payment Method Selection
 function initPaymentMethods() {
   const paymentOptions = document.querySelectorAll('input[name="payment"]');
-  
+  const bankDetails = document.getElementById('bankDetails');
+
   paymentOptions.forEach(option => {
     option.addEventListener('change', () => {
-      updateBankDetails(option.value);
+
+      if (option.value === 'bank-transfer' || option.value === 'wire-transfer') {
+        bankDetails.style.display = 'block';
+        updateBankDetails(option.value === 'bank-transfer' ? 'bank-transfer' : 'international');
+      } else {
+        bankDetails.style.display = 'none';
+      }
+
     });
   });
-  
-  // Show default bank details
+
   updateBankDetails('bank-transfer');
 }
 
@@ -168,6 +175,16 @@ function copyToClipboard(text, btn) {
 function initCheckoutForm() {
   const form = document.getElementById('checkoutForm');
   if (!form) return;
+
+  if (paymentMethod === 'paystack') {
+  window.location.href = 'https://paystack.com/pay/YOUR_PAYSTACK_LINK';
+  return;
+}
+
+if (paymentMethod === 'payu') {
+  window.location.href = 'https://YOUR_PAYU_LINK';
+  return;
+}
   
   form.addEventListener('submit', (e) => {
     e.preventDefault();
