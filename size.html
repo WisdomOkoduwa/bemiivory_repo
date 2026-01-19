@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bemi Ivory | Size Guide</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(30, 20%, 88%)',
+            background: 'hsl(40, 33%, 98%)',
+            foreground: 'hsl(30, 15%, 15%)',
+            muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
+            secondary: 'hsl(30, 20%, 96%)',
+            accent: 'hsl(35, 45%, 45%)',
+            cream: 'hsl(40, 33%, 98%)',
+            charcoal: 'hsl(30, 15%, 15%)'
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-background text-foreground font-sans">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 bg-background border-b border-border">
+  <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html">
+      <img src="images/bemi_logo.jpg" class="h-16" alt="Bemi Ivory">
+    </a>
+    <nav class="hidden md:flex space-x-8 text-sm">
+      <a href="index.html" class="hover:text-accent">Home</a>
+      <a href="shop.html" class="hover:text-accent">Shop</a>
+      <a href="shop.html?category=readytowear" class="hover:text-accent">Ready-To-Wear</a>
+      <a href="shop.html?category=bespoke" class="hover:text-accent">Bespoke</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="py-24 bg-secondary text-center">
+  <p class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">Size & Fit</p>
+  <h1 class="font-display text-4xl mb-4">Size Guide</h1>
+  <p class="text-muted-foreground max-w-xl mx-auto">
+    Designed for confidence, comfort, and elegance. Use our guide to find your perfect fit.
+  </p>
+</section>
+
+<!-- ================= SIZE CHART ================= -->
+<section class="py-20">
+  <div class="container mx-auto px-4 max-w-5xl">
+    <h2 class="font-display text-3xl text-center mb-10">Ready-To-Wear Size Chart</h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border border-border text-sm">
+        <thead class="bg-secondary">
+          <tr>
+            <th class="p-4 text-left">Size</th>
+            <th class="p-4 text-left">Bust</th>
+            <th class="p-4 text-left">Waist</th>
+            <th class="p-4 text-left">Hips</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr><td class="p-4">S</td><td class="p-4">33-34"</td><td class="p-4">26-27"</td><td class="p-4">36-37"</td></tr>
+          <tr><td class="p-4">M</td><td class="p-4">35-36"</td><td class="p-4">28-29"</td><td class="p-4">38-39"</td></tr>
+          <tr><td class="p-4">L</td><td class="p-4">37-39"</td><td class="p-4">30-32"</td><td class="p-4">40-42"</td></tr>
+          <tr><td class="p-4">XL</td><td class="p-4">40-42"</td><td class="p-4">33-35"</td><td class="p-4">43-45"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEASUREMENT GUIDE ================= -->
+<section class="py-20 bg-secondary">
+  <div class="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-12 items-center">
+    <img src="images/size-guide-diagram.jpg" class="max-w-sm mx-auto" alt="Measurement Guide">
+
+    <div class="space-y-5 text-muted-foreground text-sm">
+      <p><strong class="text-foreground">Bust:</strong> Measure around the fullest part.</p>
+      <p><strong class="text-foreground">Waist:</strong> Measure at the narrowest point.</p>
+      <p><strong class="text-foreground">Hips:</strong> Measure around the fullest part.</p>
+      <p><strong class="text-foreground">Length:</strong> From shoulder or waist to hem.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHATSAPP AUTO-FILL FORM ================= -->
+<section class="py-24">
+  <div class="container mx-auto px-4 max-w-xl text-center">
+    <h2 class="font-display text-3xl mb-4">Need Help With Your Size?</h2>
+    <p class="text-muted-foreground mb-10">
+      Enter your measurements and send them directly to our team on WhatsApp.
+    </p>
+
+    <form onsubmit="sendToWhatsApp(); return false;" class="space-y-4 text-left">
+      <input id="bust" type="text" placeholder="Bust (inches)" class="w-full p-3 border border-border">
+      <input id="waist" type="text" placeholder="Waist (inches)" class="w-full p-3 border border-border">
+      <input id="hips" type="text" placeholder="Hips (inches)" class="w-full p-3 border border-border">
+      <input id="height" type="text" placeholder="Height (optional)" class="w-full p-3 border border-border">
+      <textarea id="notes" placeholder="Style preference or notes" class="w-full p-3 border border-border"></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-foreground text-cream py-4 uppercase tracking-wide hover:bg-accent transition"
+      >
+        Send on WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+  <footer class="bg-foreground text-cream py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <h3 class="font-display text-xl mb-4">Bemi Ivory</h3>
+          <p class="text-cream/70 text-sm">Crafting timeless elegance for the modern woman.</p>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">Shop</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="shop.html?category=new" class="hover:text-cream transition-colors">New Arrivals</a></li>
+            <li><a href="shop.html?category=ready-to-wear" class="hover:text-cream transition-colors">Ready-To-Wear</a></li>
+            <li><a href="shop.html?category=africanheritage" class="hover:text-cream transition-colors">African Heritage</a></li>
+            <li><a href="shop.html?category=bespoke" class="hover:text-cream transition-colors">Bemi Ivory Bespoke</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">Help</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="#" class="hover:text-cream transition-colors">Shipping Info</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Returns</a></li>
+            <li><a href="size.html" class="hover:text-cream transition-colors">Size Guide</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm tracking-wide uppercase mb-4">About</h4>
+          <ul class="space-y-2 text-sm text-cream/70">
+            <li><a href="#" class="hover:text-cream transition-colors">Our Story</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Sustainability</a></li>
+            <li><a href="#" class="hover:text-cream transition-colors">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-cream/50">
+        <p>&copy; 2026 Bemi Ivory. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="policy.html" class="hover:text-cream transition-colors">Privacy Policy & Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+function sendToWhatsApp() {
+  const bust = document.getElementById("bust").value;
+  const waist = document.getElementById("waist").value;
+  const hips = document.getElementById("hips").value;
+  const height = document.getElementById("height").value;
+  const notes = document.getElementById("notes").value;
+
+  const message = `
+Hello Bemi Ivory 👋
+
+Here are my measurements:
+
+Bust: ${bust}
+Waist: ${waist}
+Hips: ${hips}
+Height: ${height}
+
+Notes:
+${notes}
+
+I’d love help choosing the right size or custom option.
+  `;
+
+  const url = "https://wa.me/2348065196574?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
