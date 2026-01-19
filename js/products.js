@@ -4,7 +4,7 @@ const products = [
     id: "1",
     name: "Silk Midi Dress",
     price: 385,
-    category: "dresses",
+    category: "ready-to-wear",
     description: "An elegant silk midi dress with a flattering silhouette. Perfect for special occasions or elevated everyday wear.",
     details: "100% Mulberry Silk. Dry clean only. Made in Italy.",
     images: [
@@ -24,7 +24,7 @@ const products = [
     id: "2",
     name: "Cashmere Wrap Cardigan",
     price: 295,
-    category: "tops",
+    category: "ready-to-wear",
     description: "Luxuriously soft cashmere cardigan with an elegant wrap design. A versatile piece for layering.",
     details: "100% Cashmere. Hand wash cold. Made in Scotland.",
     images: [
@@ -43,7 +43,7 @@ const products = [
     id: "3",
     name: "Wide Leg Trousers",
     price: 225,
-    category: "bottoms",
+    category: "africanheritage",
     description: "High-waisted wide leg trousers with a relaxed, flowing silhouette. Crafted from premium wool blend.",
     details: "70% Wool, 30% Polyester. Dry clean only. Made in Portugal.",
     images: [
@@ -62,7 +62,7 @@ const products = [
     id: "4",
     name: "Leather Belt",
     price: 145,
-    category: "accessories",
+    category: "africanheritage",
     description: "Handcrafted leather belt with gold-tone buckle. Timeless elegance for any outfit.",
     details: "100% Italian Leather. Wipe clean. Made in Italy.",
     images: [
@@ -81,7 +81,7 @@ const products = [
     id: "5",
     name: "Linen Blouse",
     price: 175,
-    category: "tops",
+    category: "bespoke",
     description: "Relaxed linen blouse with delicate button details. Perfect for warm days.",
     details: "100% Linen. Machine wash cold. Made in France.",
     images: [
@@ -100,7 +100,7 @@ const products = [
     id: "6",
     name: "Satin Evening Gown",
     price: 550,
-    category: "dresses",
+    category: "bespoke",
     description: "Stunning floor-length satin gown with elegant draping. For your most special moments.",
     details: "100% Silk Satin. Dry clean only. Made in Italy.",
     images: [
@@ -119,7 +119,7 @@ const products = [
     id: "7",
     name: "Silk Scarf",
     price: 125,
-    category: "accessories",
+    category: "bespoke",
     description: "Hand-painted silk scarf with exclusive print. Add a touch of artistry to any look.",
     details: "100% Silk. Dry clean only. Made in Italy.",
     images: [
@@ -137,7 +137,7 @@ const products = [
     id: "8",
     name: "Tailored Blazer",
     price: 425,
-    category: "tops",
+    category: "bespoke",
     description: "Impeccably tailored blazer with a modern silhouette. The cornerstone of any wardrobe.",
     details: "98% Wool, 2% Elastane. Dry clean only. Made in England.",
     images: [
@@ -181,7 +181,6 @@ function getProductById(id) {
 function getProductsByCategory(category) {
   if (category === 'all' || !category) return products;
   if (category === 'new') return products.filter(p => p.isNew);
-  if (category === 'bestsellers') return products.filter(p => p.featured);
   return products.filter(p => p.category === category);
 }
 
