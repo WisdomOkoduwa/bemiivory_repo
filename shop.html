@@ -55,9 +55,11 @@
 
         <nav class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="text-sm tracking-wide hover:text-accent transition-colors">Home</a>
-          <a href="shop.html" class="text-sm tracking-wide text-accent">Shop</a>
-          <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent transition-colors">New Arrivals</a>
-          <a href="shop.html?category=bestsellers" class="text-sm tracking-wide hover:text-accent transition-colors">Bestsellers</a>
+          <a href="shop.html" class="text-sm tracking-wide hover:text-accent transition-colors">Shop</a>
+          <a href="shop.html?category=readytowear" class="text-sm tracking-wide hover:text-accent transition-colors">Ready-to-Wear</a>
+          <a href="shop.html?category=africanheritage" class="text-sm tracking-wide hover:text-accent transition-colors">African Heritage</a>
+          <a href="shop.html?category=bespoke" class="text-sm tracking-wide hover:text-accent transition-colors">Bemi Ivory Bespoke</a>
+          <a href="shop.html" class="text-sm tracking-wide hover:text-accent transition-colors">Book A Consultation</a>
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -85,8 +87,10 @@
       <nav class="container mx-auto px-4 py-4 space-y-4">
         <a href="index.html" class="block text-sm tracking-wide">Home</a>
         <a href="shop.html" class="block text-sm tracking-wide">Shop</a>
-        <a href="shop.html?category=new" class="block text-sm tracking-wide">New Arrivals</a>
-        <a href="shop.html?category=bestsellers" class="block text-sm tracking-wide">Bestsellers</a>
+        <a href="shop.html?category=ready-to-wear" class="block text-sm tracking-wide">Ready-to-Wear</a>
+        <a href="shop.html?category=africanheritage" class="block text-sm tracking-wide">African Heritage</a>
+        <a href="shop.html?category=bespoke" class="block text-sm tracking-wide">Bemi Ivory Bespoke</a>
+        <a href="shop.html" class="block text-sm tracking-wide">Book A Consultation</a>
       </nav>
     </div>
   </header>
@@ -106,18 +110,16 @@
       <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
         <div class="flex flex-wrap gap-2">
           <button class="filter-btn active px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="all">All</button>
-          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="dresses">Dresses</button>
-          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="tops">Tops</button>
-          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="bottoms">Bottoms</button>
-          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="accessories">Accessories</button>
+          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="ready-to-wear">Ready-To-Wear</button>
+          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="africanheritage">African Heritage</button>
+          <button class="filter-btn px-4 py-2 text-sm border border-border hover:border-foreground transition-colors" data-category="bespoke">Bemi Ivory Bespoke</button>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-sm text-muted-foreground">Sort by:</span>
           <select id="sortSelect" class="bg-transparent border border-border px-3 py-2 text-sm focus:outline-none focus:border-foreground">
-            <option value="featured">Featured</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="newest">Newest</option>
+          
           </select>
         </div>
       </div>
@@ -129,21 +131,21 @@
     </div>
   </section>
 
-  <!-- Footer -->
+ <!-- Footer -->
   <footer class="bg-foreground text-cream py-16">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div>
-          <h3 class="font-display text-xl mb-4">LUXE</h3>
+          <h3 class="font-display text-xl mb-4">Bemi Ivory</h3>
           <p class="text-cream/70 text-sm">Crafting timeless elegance for the modern woman.</p>
         </div>
         <div>
           <h4 class="text-sm tracking-wide uppercase mb-4">Shop</h4>
           <ul class="space-y-2 text-sm text-cream/70">
             <li><a href="shop.html?category=new" class="hover:text-cream transition-colors">New Arrivals</a></li>
-            <li><a href="shop.html?category=dresses" class="hover:text-cream transition-colors">Dresses</a></li>
-            <li><a href="shop.html?category=tops" class="hover:text-cream transition-colors">Tops</a></li>
-            <li><a href="shop.html?category=accessories" class="hover:text-cream transition-colors">Accessories</a></li>
+            <li><a href="shop.html?category=ready-to-wear" class="hover:text-cream transition-colors">Ready-To-Wear</a></li>
+            <li><a href="shop.html?category=africanheritage" class="hover:text-cream transition-colors">African Heritage</a></li>
+            <li><a href="shop.html?category=bespoke" class="hover:text-cream transition-colors">Bemi Ivory Bespoke</a></li>
           </ul>
         </div>
         <div>
@@ -151,7 +153,7 @@
           <ul class="space-y-2 text-sm text-cream/70">
             <li><a href="#" class="hover:text-cream transition-colors">Shipping Info</a></li>
             <li><a href="#" class="hover:text-cream transition-colors">Returns</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Size Guide</a></li>
+            <li><a href="size.html" class="hover:text-cream transition-colors">Size Guide</a></li>
             <li><a href="#" class="hover:text-cream transition-colors">Contact Us</a></li>
           </ul>
         </div>
@@ -165,14 +167,14 @@
         </div>
       </div>
       <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-cream/50">
-        <p>&copy; 2024 LUXE. All rights reserved.</p>
+        <p>&copy; 2026 Bemi Ivory. All rights reserved.</p>
         <div class="flex gap-6 mt-4 md:mt-0">
-          <a href="#" class="hover:text-cream transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-cream transition-colors">Terms of Service</a>
+          <a href="policy.html" class="hover:text-cream transition-colors">Privacy Policy & Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
+
 
   <!-- Cart Drawer -->
   <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
