@@ -34,7 +34,12 @@ function renderOrderSummary() {
       </div>
       <div class="flex-1">
         <h3 class="text-sm font-medium">${item.name}</h3>
-        <p class="text-xs text-muted-foreground">${item.size} / ${item.color}</p>
+        <p class="text-xs text-muted-foreground">
+  ${item.size === 'Custom' && item.sizeDetails
+    ? `Custom — Bust: ${item.sizeDetails.bust}", Waist: ${item.sizeDetails.waist}", Hips: ${item.sizeDetails.hips}"${item.sizeDetails.height ? ', Height: ' + item.sizeDetails.height + '"' : ''}`
+    : item.size
+  } / ${item.color}
+</p>
       </div>
       <span class="text-sm">${formatPrice(item.price * item.quantity)}</span>
     </div>

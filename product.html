@@ -50,16 +50,15 @@
     <div class="container mx-auto px-4 md:px-6">
       <div class="flex items-center justify-between h-16 md:h-20">
         <a href="index.html" class="inline-block">
-    <img src="images/bemi_logo.jpg" alt="Bemi Ivory Logo" class="h-16 md:h-20 w-auto object-contain">
-  </a>
-
+          <img src="images/bemi_logo.jpg" alt="BÉMI IVORY Logo" class="h-16 md:h-20 w-auto object-contain">
+        </a>
 
         <nav class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="text-sm tracking-wide hover:text-accent transition-colors">Home</a>
           <a href="shop.html" class="text-sm tracking-wide hover:text-accent transition-colors">Shop</a>
-          <a href="shop.html?category=ready-to-wear" class="text-sm tracking-wide hover:text-accent transition-colors">Ready-to-Wear</a>
+          <a href="shop.html?category=readytowear" class="text-sm tracking-wide hover:text-accent transition-colors">Ready-to-Wear</a>
           <a href="shop.html?category=africanheritage" class="text-sm tracking-wide hover:text-accent transition-colors">African Heritage</a>
-          <a href="shop.html?category=bespoke" class="text-sm tracking-wide hover:text-accent transition-colors">Bemi Ivory Bespoke</a>
+          <a href="shop.html?category=bespoke" class="text-sm tracking-wide hover:text-accent transition-colors">BÉMI IVORY Bespoke</a>
           <a href="book.html" class="text-sm tracking-wide hover:text-accent transition-colors">Book A Consultation</a>
         </nav>
 
@@ -90,8 +89,9 @@
         <a href="shop.html" class="block text-sm tracking-wide">Shop</a>
         <a href="shop.html?category=ready-to-wear" class="block text-sm tracking-wide">Ready-to-Wear</a>
         <a href="shop.html?category=africanheritage" class="block text-sm tracking-wide">African Heritage</a>
-        <a href="shop.html?category=bespoke" class="block text-sm tracking-wide">Bemi Ivory Bespoke</a>
+        <a href="shop.html?category=bespoke" class="block text-sm tracking-wide">BÉMI IVORY Bespoke</a>
         <a href="book.html" class="block text-sm tracking-wide">Book a Consultation</a>
+      </nav>
     </div>
   </header>
 
@@ -131,18 +131,24 @@
           <p id="productDescription" class="text-muted-foreground leading-relaxed"></p>
 
           <!-- Size Selection -->
-          <div>
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-sm font-medium">Size</span>
-              <a href="size.html">
-              <button class="text-sm text-muted-foreground hover:text-foreground underline">Click For Custom Sizes</button>
-              </a>
+<div class="space-y-4">
+  <span class="text-sm font-medium block">Size</span>
+  <div id="sizeOptions" class="flex flex-wrap gap-2">
+    <!-- Size buttons inserted by JS -->
+  </div>
 
-            </div>
-            <div id="sizeOptions" class="flex flex-wrap gap-2">
-              <!-- Size buttons inserted by JS -->
-            </div>
-          </div>
+  <!-- Rounded Custom Measurements Button -->
+  <button id="openSizeGuide" class="mt-2 px-4 py-2 bg-accent text-white text-sm rounded-full hover:bg-accent-dark transition-colors">
+    Or enter your measurements
+  </button>
+
+  <!-- View Size Guide Link -->
+  <a href="size.html" class="mt-2 block text-sm underline text-accent hover:text-foreground transition-colors">
+    View Size Guide
+  </a>
+</div>
+
+
 
           <!-- Color Selection -->
           <div>
@@ -186,6 +192,24 @@
     </div>
   </section>
 
+  <!-- Size Guide Modal -->
+  <div id="sizeGuideModal" class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center hidden">
+    <div class="bg-cream rounded-lg w-11/12 max-w-md p-6 relative">
+      <button id="closeSizeGuide" class="absolute top-3 right-3 text-foreground text-xl font-bold">&times;</button>
+      <h2 class="font-display text-xl mb-4">Enter Your Measurements</h2>
+      <div class="space-y-3">
+        <input id="inputBust" type="text" placeholder="Bust (inches)" class="w-full p-3 border border-border rounded">
+        <input id="inputWaist" type="text" placeholder="Waist (inches)" class="w-full p-3 border border-border rounded">
+        <input id="inputHips" type="text" placeholder="Hips (inches)" class="w-full p-3 border border-border rounded">
+        <input id="inputHeight" type="text" placeholder="Height (optional)" class="w-full p-3 border border-border rounded">
+        <textarea id="inputNotes" placeholder="Style preference or notes" class="w-full p-3 border border-border rounded"></textarea>
+      </div>
+      <button id="confirmSize" class="mt-4 w-full bg-foreground text-cream py-3 uppercase hover:bg-accent transition-colors">
+        Save Measurements
+      </button>
+    </div>
+  </div>
+
   <!-- Related Products -->
   <section class="py-16 bg-secondary">
     <div class="container mx-auto px-4 md:px-6">
@@ -196,12 +220,43 @@
     </div>
   </section>
 
+  <!-- CART DRAWER -->
+<div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+  <div id="cartOverlay" class="absolute inset-0 bg-black/50"></div>
+  <div id="cartPanel" class="absolute right-0 top-0 h-full w-full max-w-sm bg-cream shadow-lg transform translate-x-full transition-transform duration-300 flex flex-col">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center p-4 border-b border-border">
+      <h2 class="font-display text-lg">Your Bag</h2>
+      <button id="closeCart" class="text-foreground text-xl font-bold">&times;</button>
+    </div>
+
+    <!-- Items -->
+    <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4">
+      <!-- Cart items inserted by JS -->
+    </div>
+
+    <!-- Footer / Total -->
+    <div id="cartFooter" class="p-4 border-t border-border hidden">
+      <div class="flex justify-between items-center mb-4">
+        <span class="font-medium">Total</span>
+        <span id="cartTotal" class="font-medium">$0.00</span>
+      </div>
+      <a href="checkout.html" class="block w-full text-center bg-foreground text-cream py-3 uppercase hover:bg-accent transition-colors">
+        Checkout
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
   <!-- Footer -->
   <footer class="bg-foreground text-cream py-16">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div>
-          <h3 class="font-display text-xl mb-4">Bemi Ivory</h3>
+          <h3 class="font-display text-xl mb-4">BÉMI IVORY</h3>
           <p class="text-cream/70 text-sm">Crafting timeless elegance for the modern woman.</p>
         </div>
         <div>
@@ -210,7 +265,7 @@
             <li><a href="shop.html?category=new" class="hover:text-cream transition-colors">New Arrivals</a></li>
             <li><a href="shop.html?category=ready-to-wear" class="hover:text-cream transition-colors">Ready-To-Wear</a></li>
             <li><a href="shop.html?category=africanheritage" class="hover:text-cream transition-colors">African Heritage</a></li>
-            <li><a href="shop.html?category=bespoke" class="hover:text-cream transition-colors">Bemi Ivory Bespoke</a></li>
+            <li><a href="shop.html?category=bespoke" class="hover:text-cream transition-colors">BÉMI IVORY Bespoke</a></li>
           </ul>
         </div>
         <div>
@@ -232,41 +287,13 @@
         </div>
       </div>
       <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-cream/50">
-        <p>&copy; 2026 Bemi Ivory. All rights reserved.</p>
+        <p>&copy; 2026 BÉMI IVORY. All rights reserved.</p>
         <div class="flex gap-6 mt-4 md:mt-0">
           <a href="policy.html" class="hover:text-cream transition-colors">Privacy Policy & Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
-
-
-  <!-- Cart Drawer -->
-  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
-    <div id="cartOverlay" class="absolute inset-0 bg-black/50"></div>
-    <div id="cartPanel" class="absolute right-0 top-0 h-full w-full max-w-md bg-background transform translate-x-full transition-transform duration-300">
-      <div class="flex flex-col h-full">
-        <div class="flex items-center justify-between p-6 border-b border-border">
-          <h2 class="font-display text-xl">Shopping Bag</h2>
-          <button id="closeCart" class="p-2 hover:text-accent transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-        <div id="cartItems" class="flex-1 overflow-y-auto p-6"></div>
-        <div id="cartFooter" class="border-t border-border p-6 hidden">
-          <div class="flex justify-between mb-4">
-            <span>Subtotal</span>
-            <span id="cartTotal" class="font-medium">$0.00</span>
-          </div>
-          <a href="checkout.html" class="block w-full bg-foreground text-cream text-center py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
-            Checkout
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
