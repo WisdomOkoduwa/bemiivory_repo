@@ -142,3 +142,24 @@
 .copy-btn.copied {
   color: hsl(142, 76%, 36%);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul.reveal {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.reveal li::before {
+  content: "•";
+  margin-right: 0.6rem;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 2rem 0;
+}
