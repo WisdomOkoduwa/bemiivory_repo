@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product | Luxury Fashion</title>
-  <meta name="description" content="View product details">
+  <title>BÉMI IVORY Fashion Wears | Elegant Designs</title>
+  <link rel="icon" type="image/svg+xml" href="images/bemi_logo.svg">
+  <meta name="description" content="Discover our curated collection of luxury fashion pieces designed with purpose and elegance.">
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Custom Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -34,6 +39,7 @@
     }
   </script>
 
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-background text-foreground font-sans antialiased">
@@ -41,59 +47,157 @@
   <!-- Announcement Bar -->
   <div class="bg-foreground text-cream py-2.5 text-center">
     <p class="text-xs tracking-[0.2em] uppercase font-light">
-      Worldwide Shipping • Limited Pieces Available
+      Worldwide Shipping
     </p>
   </div>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-    <div class="container mx-auto px-4 md:px-6">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <a href="index.html" class="inline-block">
-          <img src="images/bemi_logo.jpg" alt="BÉMI IVORY Logo" class="h-16 md:h-20 w-auto object-contain">
-        </a>
+ <!-- Header -->
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
 
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="index.html" class="text-sm tracking-wide hover:text-accent transition-colors">Home</a>
-          <a href="shop.html" class="text-sm tracking-wide hover:text-accent transition-colors">Shop</a>
-          <a href="shop.html?category=readytowear" class="text-sm tracking-wide hover:text-accent transition-colors">Ready-to-Wear</a>
-          <a href="shop.html?category=africanheritage" class="text-sm tracking-wide hover:text-accent transition-colors">African Heritage</a>
-          <a href="shop.html?category=bespoke" class="text-sm tracking-wide hover:text-accent transition-colors">BÉMI IVORY Bespoke</a>
-          <a href="book.html" class="text-sm tracking-wide hover:text-accent transition-colors">Book A Consultation</a>
-        </nav>
+  <!-- MAIN HEADER -->
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="flex items-center justify-between h-14 md:h-20">
 
-        <div class="flex items-center space-x-4">
-          <button class="p-2 hover:text-accent transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </button>
-          <button id="cartBtn" class="p-2 hover:text-accent transition-colors relative">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-            </svg>
-            <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
-          </button>
-          <button id="mobileMenuBtn" class="md:hidden p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
-        </div>
+      <!-- Mobile Menu Button Left -->
+      <button id="mobileMenuBtn" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- DESKTOP NAV -->
+      <nav class="hidden md:flex items-center space-x-8 mx-auto">
+        <a href="index.html" class="text-sm tracking-wide hover:text-accent">HOME</a>
+        <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
+
+        <!-- Shop RTW -->
+<div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+  
+  <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
+    <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
+    <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
+    <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
+    <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
+    <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
+  </div>
+</div>
+
+
+        <!-- Bespoke -->
+<div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI BESPOKE</button>
+  
+  <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
+  </div>
+</div>
+
+
+        <a href="index.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
+        <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
+        <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
+
+      </nav>
+
+      <!-- RIGHT ICONS -->
+      <div class="flex items-center space-x-3 md:space-x-4">
+
+        <!-- Search -->
+        <button class="p-2 hover:text-accent">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+
+       <!-- Cart -->
+<button id="cartBtn" class="p-2 relative hover:text-accent">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+  </svg>
+
+  <!-- Counter -->
+  <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full 
+               flex items-center justify-center hidden">
+    0
+  </span>
+</button>
+
+
+       <!-- Currency Selector (SVG FLAGS) -->
+<div class="relative">
+  <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
+    <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+    <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
+    <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
+    <option value="USD" data-flag="images/flags/us.svg">USD</option>
+  </select>
+
+  <!-- Flag (SVG) -->
+  <img id="currencyFlag" src="images/flags/ng.svg" alt="NGN" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+
+  <!-- Chevron -->
+  <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+  </svg>
+</div>
+
+
       </div>
     </div>
+  </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-border">
-      <nav class="container mx-auto px-4 py-4 space-y-4">
-        <a href="index.html" class="block text-sm tracking-wide">Home</a>
-        <a href="shop.html" class="block text-sm tracking-wide">Shop</a>
-        <a href="shop.html?category=ready-to-wear" class="block text-sm tracking-wide">Ready-to-Wear</a>
-        <a href="shop.html?category=africanheritage" class="block text-sm tracking-wide">African Heritage</a>
-        <a href="shop.html?category=bespoke" class="block text-sm tracking-wide">BÉMI IVORY Bespoke</a>
-        <a href="book.html" class="block text-sm tracking-wide">Book a Consultation</a>
-      </nav>
-    </div>
-  </header>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-border">
+    <nav class="container mx-auto px-4 py-4 space-y-4">
+      <a href="index.html" class="block text-sm">HOME</a>
+      <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
+
+      <!-- Shop RTW -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          SHOP RTW
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2 space-y-2">
+          <a href="shop.html" class="block text-sm">All</a>
+          <a href="shop.html?category=dresses" class="block text-sm">Dresses</a>
+          <a href="shop.html?category=tops" class="block text-sm">Tops</a>
+          <a href="shop.html?category=skirts" class="block text-sm">Skirts</a>
+          <a href="shop.html?category=trousers" class="block text-sm">Trousers</a>
+          <a href="shop.html?category=africanheritage" class="block text-sm">African Heritage</a>
+        </div>
+      </details>
+
+      <!-- Bespoke -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          BÉMI Bespoke
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2">
+          <a href="book.html" class="block text-sm">Book a Consultation</a>
+        </div>
+      </details>
+
+      <a href="index.html" class="block text-sm">COLLECTIONS</a>
+      <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
+      <a href="index.html#contact" class="block text-sm">CONTACT US</a>
+      <a href="faq.html" class="block text-sm">FAQs</a>
+
+    </nav>
+  </div>
+</header>
 
   <!-- Breadcrumb -->
   <div class="container mx-auto px-4 md:px-6 py-4">
@@ -297,6 +401,8 @@
 
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
-  <script src="js/product-detail.js"></script>
+  <script src="js/main.js"></script>
+
+
 </body>
 </html>

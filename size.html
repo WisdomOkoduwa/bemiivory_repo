@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BÉMI IVORY | Size Guide</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BÉMI IVORY Size Guide | Elegant Designs</title>
+  <link rel="icon" type="image/svg+xml" href="images/bemi_logo.svg">
+  <meta name="description" content="Discover our curated collection of luxury fashion pieces designed with purpose and elegance.">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -17,11 +19,13 @@
             border: 'hsl(30, 20%, 88%)',
             background: 'hsl(40, 33%, 98%)',
             foreground: 'hsl(30, 15%, 15%)',
+            primary: { DEFAULT: 'hsl(30, 15%, 15%)', foreground: 'hsl(40, 33%, 98%)' },
+            secondary: { DEFAULT: 'hsl(30, 20%, 96%)', foreground: 'hsl(30, 15%, 25%)' },
             muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
-            secondary: 'hsl(30, 20%, 96%)',
-            accent: 'hsl(35, 45%, 45%)',
+            accent: { DEFAULT: 'hsl(35, 45%, 45%)', foreground: 'hsl(40, 33%, 98%)' },
+            gold: 'hsl(35, 45%, 45%)',
             cream: 'hsl(40, 33%, 98%)',
-            charcoal: 'hsl(30, 15%, 15%)'
+            charcoal: 'hsl(30, 15%, 15%)',
           },
           fontFamily: {
             display: ['Playfair Display', 'serif'],
@@ -31,100 +35,500 @@
       }
     }
   </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(32px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes expandRule {
+      from { transform:scaleX(0); }
+      to   { transform:scaleX(1); }
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform:translateY(0); opacity:1; }
+      55%     { transform:translateY(7px); opacity:.35; }
+    }
+
+    .reveal {
+      opacity:0;
+      animation: fadeUp .95s cubic-bezier(.22,.61,0,1) forwards;
+    }
+    .reveal-rule {
+      transform-origin:left;
+      transform:scaleX(0);
+      animation: expandRule 1s cubic-bezier(.22,.61,0,1) forwards;
+    }
+    .d0{animation-delay:.1s} .d1{animation-delay:.3s}
+    .d2{animation-delay:.5s} .d3{animation-delay:.7s}
+    .d4{animation-delay:.9s} .d5{animation-delay:1.1s}
+
+    /* ─── Hero ─── */
+    .hero-wrap {
+      position:relative;
+      min-height:92vh;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute;
+      inset:0;
+      background:
+        url('images/bemi_img (12).jpg')
+        center/cover no-repeat;
+    }
+    /* warm-toned gradient overlay: left side darkish charcoal → right side lighter, keeps text readable */
+    .hero-overlay {
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          105deg,
+          rgba(38,30,24,.82)  0%,
+          rgba(38,30,24,.68) 40%,
+          rgba(38,30,24,.38) 70%,
+          rgba(38,30,24,.12) 100%
+        );
+    }
+    /* subtle bottom fade so it bleeds into the cream page */
+    .hero-bottom-fade {
+      position:absolute;
+      bottom:0; left:0; right:0;
+      height:120px;
+      background:linear-gradient(to bottom, transparent, hsl(40,33%,98%));
+      z-index:2;
+    }
+
+    /* ─── Gold accent rule ─── */
+    .gold-rule {
+      height:1px;
+      background:hsl(35,45%,45%);
+    }
+
+    /* ─── Pill tag ─── */
+    .pill {
+      display:inline-block;
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:999px;
+      padding:.32rem .95rem;
+      font-size:.68rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.75);
+      font-family:'DM Sans',sans-serif;
+    }
+
+    /* ─── Ghost watermark ─── */
+    .ghost {
+      position:absolute;
+      right:-2%;
+      bottom:18%;
+      font-family:'Playfair Display',serif;
+      font-weight:300;
+      font-style:italic;
+      font-size:clamp(6rem,18vw,14rem);
+      line-height:.85;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,255,255,.12);
+      pointer-events:none;
+      user-select:none;
+      white-space:nowrap;
+    }
+
+    /* ─── Scroll mouse icon ─── */
+    .scroll-mouse {
+      width:18px; height:28px;
+    }
+    .scroll-dot {
+      animation:scrollBounce 2s ease-in-out infinite;
+    }
+
+    /* ─── Section headings (shared) ─── */
+    .section-label {
+      font-size:.7rem;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:hsl(30,10%,45%);
+      font-family:'DM Sans',sans-serif;
+      font-weight:400;
+    }
+
+    /* ─── Table refinement ─── */
+    .luxury-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:.88rem;
+    }
+    .luxury-table thead th {
+      font-family:'DM Sans',sans-serif;
+      font-weight:500;
+      font-size:.7rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:hsl(30,10%,45%);
+      text-align:left;
+      padding:1rem 1.25rem;
+      border-bottom:1px solid hsl(30,20%,88%);
+    }
+    .luxury-table tbody td {
+      padding:1rem 1.25rem;
+      border-bottom:1px solid hsl(30,20%,88%);
+      color:hsl(30,15%,22%);
+      font-weight:300;
+    }
+    .luxury-table tbody tr:last-child td { border-bottom:none; }
+    .luxury-table tbody tr:hover { background:hsl(30,20%,96%); transition:background .2s; }
+    .luxury-table tbody td:first-child {
+      font-family:'Playfair Display',serif;
+      font-weight:500;
+      font-size:1rem;
+    }
+
+    /* ─── Measurement list ─── */
+    .measure-item { position:relative; padding-left:1.6rem; }
+    .measure-item::before {
+      content:'';
+      position:absolute;
+      left:0; top:.75rem;
+      width:8px; height:1px;
+      background:hsl(35,45%,45%);
+    }
+
+    /* ─── WhatsApp inputs ─── */
+    .lux-input {
+      width:100%;
+      padding:.9rem 1rem;
+      border:none;
+      border-bottom:1px solid hsl(30,20%,88%);
+      background:transparent;
+      font-family:'DM Sans',sans-serif;
+      font-size:.88rem;
+      font-weight:300;
+      color:hsl(30,15%,15%);
+      outline:none;
+      transition:border-color .3s;
+    }
+    .lux-input::placeholder { color:hsl(30,10%,58%); font-weight:300; }
+    .lux-input:focus { border-color:hsl(35,45%,45%); }
+
+    .lux-btn {
+      width:100%;
+      padding:1rem;
+      background:hsl(30,15%,15%);
+      color:hsl(40,33%,98%);
+      border:none;
+      font-family:'DM Sans',sans-serif;
+      font-size:.72rem;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:background .3s;
+      margin-top:.75rem;
+    }
+    .lux-btn:hover { background:hsl(35,45%,45%); }
+  </style>
 </head>
+<body class="bg-background text-foreground font-sans antialiased">
 
-<body class="bg-background text-foreground font-sans">
-
-<!-- ================= HEADER ================= -->
-<header class="sticky top-0 z-50 bg-background border-b border-border">
-  <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="index.html">
-      <img src="images/bemi_logo.jpg" class="h-16" alt="BÉMI IVORY">
-    </a>
-    <nav class="hidden md:flex space-x-8 text-sm">
-      <a href="index.html" class="hover:text-accent">Home</a>
-      <a href="shop.html" class="hover:text-accent">Shop</a>
-      <a href="shop.html?category=readytowear" class="hover:text-accent">Ready-To-Wear</a>
-      <a href="shop.html?category=bespoke" class="hover:text-accent">Bespoke</a>
-    </nav>
+  <!-- ─── Announcement Bar ─── -->
+  <div class="bg-foreground text-cream py-2.5 text-center">
+    <p class="text-xs tracking-[0.2em] uppercase font-light">Worldwide Shipping</p>
   </div>
-</header>
 
-<!-- ================= HERO ================= -->
-<section class="py-24 bg-secondary text-center">
-  <p class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">Size & Fit</p>
-  <h1 class="font-display text-4xl mb-4">Size Guide</h1>
-  <p class="text-muted-foreground max-w-xl mx-auto">
-    Designed for confidence, comfort, and elegance. Use our guide to find your perfect fit.
-  </p>
-</section>
+  <!-- ─── Header ─── -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-14 md:h-20">
 
-<!-- ================= SIZE CHART ================= -->
-<section class="py-20">
-  <div class="container mx-auto px-4 max-w-5xl">
-    <h2 class="font-display text-3xl text-center mb-10">Ready-To-Wear Size Chart</h2>
+        <button id="mobileMenuBtn" class="md:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
 
-    <div class="overflow-x-auto">
-      <table class="w-full border border-border text-sm">
-        <thead class="bg-secondary">
+        <nav class="hidden md:flex items-center space-x-8 mx-auto">
+          <a href="index.html" class="text-sm tracking-wide hover:text-accent">HOME</a>
+          <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
+          <div class="relative">
+            <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+            <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+              <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
+              <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
+              <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
+              <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
+              <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
+              <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
+            </div>
+          </div>
+          <div class="relative">
+            <button class="text-sm tracking-wide hover:text-accent peer">BÉMI BESPOKE</button>
+            <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+              <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
+            </div>
+          </div>
+          <a href="index.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
+          <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
+          <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
+        </nav>
+
+        <div class="flex items-center space-x-3 md:space-x-4">
+          <button class="p-2 hover:text-accent">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+          <button id="cartBtn" class="p-2 relative hover:text-accent">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+          </button>
+          <div class="relative">
+            <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
+              <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+              <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
+              <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
+              <option value="USD" data-flag="images/flags/us.svg">USD</option>
+            </select>
+            <img id="currencyFlag" src="images/flags/ng.svg" alt="NGN" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+            <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-border">
+      <nav class="container mx-auto px-4 py-4 space-y-4">
+        <a href="index.html" class="block text-sm">HOME</a>
+        <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
+        <details class="group">
+          <summary class="flex items-center justify-between cursor-pointer text-sm">
+            SHOP RTW
+            <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="ml-4 mt-2 space-y-2">
+            <a href="shop.html" class="block text-sm">All</a>
+            <a href="shop.html?category=dresses" class="block text-sm">Dresses</a>
+            <a href="shop.html?category=tops" class="block text-sm">Tops</a>
+            <a href="shop.html?category=skirts" class="block text-sm">Skirts</a>
+            <a href="shop.html?category=trousers" class="block text-sm">Trousers</a>
+            <a href="shop.html?category=africanheritage" class="block text-sm">African Heritage</a>
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between cursor-pointer text-sm">
+            BÉMI Bespoke
+            <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="ml-4 mt-2">
+            <a href="book.html" class="block text-sm">Book a Consultation</a>
+          </div>
+        </details>
+        <a href="index.html" class="block text-sm">COLLECTIONS</a>
+        <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
+        <a href="index.html#contact" class="block text-sm">CONTACT US</a>
+        <a href="faq.html" class="block text-sm">FAQs</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════ -->
+  <section class="hero-wrap">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-bottom-fade"></div>
+
+    <!-- ghost watermark -->
+    <div class="ghost" aria-hidden="true">SIZE</div>
+
+    <!-- content, pinned to bottom-left -->
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-10 pb-28">
+
+      <!-- gold rule -->
+      <div class="gold-rule reveal-rule d0 mb-7" style="width:56px;"></div>
+
+      <!-- pill -->
+      <div class="pill reveal d1 mb-6">Size &amp; Fit</div>
+
+      <!-- headline -->
+      <h1 class="reveal d2 text-white"
+          style="font-family:'Playfair Display',serif; font-size:clamp(2.8rem,7vw,5rem); font-weight:300; line-height:1.05; letter-spacing:-.02em;">
+        Size Guide
+      </h1>
+
+      <!-- italic accent -->
+      <p class="reveal d3 mt-3"
+         style="font-family:'Playfair Display',serif; font-style:italic; font-weight:300; font-size:clamp(1.05rem,2vw,1.25rem); color:rgba(255,255,255,.6);">
+        Designed for confidence, comfort, and elegance
+      </p>
+
+      <!-- short rule -->
+      <div class="gold-rule reveal-rule d4 mt-7" style="width:36px;"></div>
+
+      <!-- body copy -->
+      <p class="reveal d5 mt-5 max-w-md"
+         style="font-size:.87rem; line-height:1.8; color:rgba(255,255,255,.55); font-weight:300;">
+        Use our guide to find your perfect fit.
+      </p>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 reveal d5">
+      <svg class="scroll-mouse" viewBox="0 0 18 28" fill="none">
+        <rect x="1" y="1" width="16" height="26" rx="8" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+        <ellipse class="scroll-dot" cx="9" cy="8" rx="1.8" ry="3" fill="hsl(35,45%,45%)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SIZE CHART
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 bg-background">
+    <div class="container mx-auto px-4 max-w-4xl">
+
+      <!-- label + rule -->
+      <p class="section-label text-center mb-3">Ready-To-Wear</p>
+      <div class="gold-rule mx-auto mb-4" style="width:40px;"></div>
+      <h2 class="font-display text-center mb-14" style="font-size:clamp(1.8rem,4vw,2.6rem); font-weight:300; letter-spacing:-.01em;">Size Chart</h2>
+
+      <table class="luxury-table">
+        <thead>
           <tr>
-            <th class="p-4 text-left">Size</th>
-            <th class="p-4 text-left">Bust</th>
-            <th class="p-4 text-left">Waist</th>
-            <th class="p-4 text-left">Hips</th>
+            <th>Size</th>
+            <th>Bust</th>
+            <th>Waist</th>
+            <th>Hips</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-border">
-          <tr><td class="p-4">S</td><td class="p-4">33-34"</td><td class="p-4">26-27"</td><td class="p-4">36-37"</td></tr>
-          <tr><td class="p-4">M</td><td class="p-4">35-36"</td><td class="p-4">28-29"</td><td class="p-4">38-39"</td></tr>
-          <tr><td class="p-4">L</td><td class="p-4">37-39"</td><td class="p-4">30-32"</td><td class="p-4">40-42"</td></tr>
-          <tr><td class="p-4">XL</td><td class="p-4">40-42"</td><td class="p-4">33-35"</td><td class="p-4">43-45"</td></tr>
+        <tbody>
+          <tr><td>6</td><td>32"</td><td>26"</td><td>36"</td></tr>
+          <tr><td>8</td><td>34"</td><td>28"</td><td>38"</td></tr>
+          <tr><td>10</td><td>36"</td><td>30"</td><td>40"</td></tr>
+          <tr><td>12</td><td>38"</td><td>32"</td><td>42"</td></tr>
+          <tr><td>14</td><td>42"</td><td>35"</td><td>46"</td></tr>
+          <tr><td>16</td><td>44-42"</td><td>38"</td><td>48"</td></tr>
         </tbody>
       </table>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= MEASUREMENT GUIDE ================= -->
-<section class="py-20 bg-secondary">
-  <div class="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-12 items-center">
-    <img src="images/size-guide-diagram.jpg" class="max-w-sm mx-auto" alt="Measurement Guide">
+  <!-- ═══════════════════════════════════════════════════════
+       MEASUREMENT GUIDE
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-24" style="background:hsl(35,18%,93%);">
+    <div class="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-16 items-center">
 
-    <div class="space-y-5 text-muted-foreground text-sm">
-      <p><strong class="text-foreground">Bust:</strong> Measure around the fullest part.</p>
-      <p><strong class="text-foreground">Waist:</strong> Measure at the narrowest point.</p>
-      <p><strong class="text-foreground">Hips:</strong> Measure around the fullest part.</p>
-      <p><strong class="text-foreground">Length:</strong> From shoulder or waist to hem.</p>
+      <!-- image side -->
+      <div class="flex justify-center">
+        <div style="max-width:380px; width:100%; position:relative;">
+          <!-- subtle gold border frame offset -->
+          <div style="position:absolute; top:-10px; left:-10px; right:10px; bottom:10px; border:1px solid hsl(35,45%,45%); pointer-events:none; z-index:1;"></div>
+          <img src="images/size-guide-diagram.jpeg" alt="Measurement Guide" class="relative z-10" style="width:100%; display:block;">
+        </div>
+      </div>
+
+      <!-- text side -->
+      <div>
+        <p class="section-label mb-3">How To Measure</p>
+        <div class="gold-rule mb-4" style="width:40px;"></div>
+        <h2 class="font-display mb-10" style="font-size:clamp(1.8rem,3.5vw,2.4rem); font-weight:300;">Measurement Guide</h2>
+
+        <div class="space-y-5">
+          <p class="measure-item" style="font-size:.9rem; line-height:1.7; color:hsl(30,10%,38%);"><strong style="color:hsl(30,15%,15%); font-weight:500;">Bust</strong> — Measure around the fullest part.</p>
+          <p class="measure-item" style="font-size:.9rem; line-height:1.7; color:hsl(30,10%,38%);"><strong style="color:hsl(30,15%,15%); font-weight:500;">Waist</strong> — Measure at the narrowest point.</p>
+          <p class="measure-item" style="font-size:.9rem; line-height:1.7; color:hsl(30,10%,38%);"><strong style="color:hsl(30,15%,15%); font-weight:500;">Hips</strong> — Measure around the fullest part.</p>
+          <p class="measure-item" style="font-size:.9rem; line-height:1.7; color:hsl(30,10%,38%);"><strong style="color:hsl(30,15%,15%); font-weight:500;">Length</strong> — From shoulder or waist to hem.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= WHATSAPP AUTO-FILL FORM ================= -->
-<section class="py-24">
-  <div class="container mx-auto px-4 max-w-xl text-center">
-    <h2 class="font-display text-3xl mb-4">Need Help With Your Size?</h2>
-    <p class="text-muted-foreground mb-10">
-      Enter your measurements and send them directly to our team on WhatsApp.
-    </p>
+  <!-- ═══════════════════════════════════════════════════════
+       WHATSAPP FORM
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-28 bg-background">
+    <div class="container mx-auto px-4 max-w-xl">
 
-    <form onsubmit="sendToWhatsApp(); return false;" class="space-y-4 text-left">
-      <input id="bust" type="text" placeholder="Bust (inches)" class="w-full p-3 border border-border">
-      <input id="waist" type="text" placeholder="Waist (inches)" class="w-full p-3 border border-border">
-      <input id="hips" type="text" placeholder="Hips (inches)" class="w-full p-3 border border-border">
-      <input id="height" type="text" placeholder="Height (optional)" class="w-full p-3 border border-border">
-      <textarea id="notes" placeholder="Style preference or notes" class="w-full p-3 border border-border"></textarea>
+      <!-- centered header -->
+      <div class="text-center mb-14">
+        <p class="section-label mb-3">Get Help</p>
+        <div class="gold-rule mx-auto mb-4" style="width:40px;"></div>
+        <h2 class="font-display" style="font-size:clamp(1.8rem,4vw,2.6rem); font-weight:300;">Need Help With Your Size?</h2>
+        <p class="mt-4" style="font-size:.9rem; color:hsl(30,10%,45%); font-weight:300; max-width:400px; margin-left:auto; margin-right:auto; line-height:1.7;">
+          Enter your measurements and send them directly to our team on WhatsApp.
+        </p>
+      </div>
 
-      <button
-        type="submit"
-        class="w-full bg-foreground text-cream py-4 uppercase tracking-wide hover:bg-accent transition"
-      >
-        Send on WhatsApp
-      </button>
-    </form>
-  </div>
-</section>
+      <!-- inputs -->
+      <div class="space-y-1">
+        <input id="bust"           type="text" placeholder="Bust (Circumference)"            class="lux-input">
+        <input id="underbustlength" type="text" placeholder="Under Bust (Length)"             class="lux-input">
+        <input id="underbustcirc"   type="text" placeholder="Under Bust (Circumference)"     class="lux-input">
+        <input id="waist"          type="text" placeholder="Waist (Circumference)"           class="lux-input">
+        <input id="hip"            type="text" placeholder="Hip"                             class="lux-input">
+        <input id="blouse"         type="text" placeholder="Blouse Length"                   class="lux-input">
+        <input id="skirt"          type="text" placeholder="Skirt Length"                    class="lux-input">
+        <input id="dress"          type="text" placeholder="Dress Length"                    class="lux-input">
+        <textarea id="notes"       placeholder="Extra notes"                                 class="lux-input" style="resize:vertical; min-height:80px; padding-top:1rem;"></textarea>
 
-<!-- Footer -->
+        <button type="button" onclick="sendToWhatsApp()" class="lux-btn">Send on WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       WHATSAPP SCRIPT
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    function sendToWhatsApp() {
+      var bust         = document.getElementById('bust').value.trim();
+      var underbustLen = document.getElementById('underbustlength').value.trim();
+      var underbustCir = document.getElementById('underbustcirc').value.trim();
+      var waist        = document.getElementById('waist').value.trim();
+      var hip          = document.getElementById('hip').value.trim();
+      var blouse       = document.getElementById('blouse').value.trim();
+      var skirt        = document.getElementById('skirt').value.trim();
+      var dress        = document.getElementById('dress').value.trim();
+      var notes        = document.getElementById('notes').value.trim();
+
+      var lines = [];
+      lines.push('Hello BÉMI IVORY 👋');
+      lines.push('');
+      lines.push('📏 My Measurements:');
+      lines.push('─────────────────');
+      if (bust)         lines.push('Bust (Circumference): ' + bust);
+      if (underbustLen) lines.push('Under Bust (Length): ' + underbustLen);
+      if (underbustCir) lines.push('Under Bust (Circumference): ' + underbustCir);
+      if (waist)        lines.push('Waist (Circumference): ' + waist);
+      if (hip)          lines.push('Hip: ' + hip);
+      if (blouse)       lines.push('Blouse Length: ' + blouse);
+      if (skirt)        lines.push('Skirt Length: ' + skirt);
+      if (dress)        lines.push('Dress Length: ' + dress);
+      if (notes) {
+        lines.push('─────────────────');
+        lines.push('📝 Notes: ' + notes);
+      }
+      lines.push('');
+      lines.push("I'd love help choosing the right size or custom option.");
+
+      var message = lines.join('\n');
+      var phone   = '2348065196574';
+      var url     = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+      window.open(url, '_blank');
+    }
+  </script>
+
+  <!-- Footer -->
   <footer class="bg-foreground text-cream py-16">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -147,15 +551,14 @@
             <li><a href="#" class="hover:text-cream transition-colors">Shipping Info</a></li>
             <li><a href="#" class="hover:text-cream transition-colors">Returns</a></li>
             <li><a href="size.html" class="hover:text-cream transition-colors">Size Guide</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Contact Us</a></li>
+            <li><a href="index.html#contact" class="hover:text-cream transition-colors">Contact Us</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-sm tracking-wide uppercase mb-4">About</h4>
           <ul class="space-y-2 text-sm text-cream/70">
-            <li><a href="#" class="hover:text-cream transition-colors">Our Story</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Sustainability</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Careers</a></li>
+            <li><a href="index.html#story" class="hover:text-cream transition-colors">Our Story</a></li>
+    
           </ul>
         </div>
       </div>
@@ -168,35 +571,72 @@
     </div>
   </footer>
 
-<!-- ================= SCRIPT ================= -->
-<script>
-function sendToWhatsApp() {
-  const bust = document.getElementById("bust").value;
-  const waist = document.getElementById("waist").value;
-  const hips = document.getElementById("hips").value;
-  const height = document.getElementById("height").value;
-  const notes = document.getElementById("notes").value;
+  <!-- Cart Drawer -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="cartOverlay" class="absolute inset-0 bg-black/50"></div>
+    <div id="cartPanel" class="absolute right-0 top-0 h-full w-full max-w-md bg-background transform translate-x-full transition-transform duration-300">
+      <div class="flex flex-col h-full">
+        <div class="flex items-center justify-between p-6 border-b border-border">
+          <h2 class="font-display text-xl">Shopping Bag</h2>
+          <button id="closeCart" class="p-2 hover:text-accent transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="cartItems" class="flex-1 overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+        </div>
+        <div id="cartFooter" class="border-t border-border p-6 hidden">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartTotal" class="font-medium">$0.00</span>
+          </div>
+          <a href="checkout.html" class="block w-full bg-foreground text-cream text-center py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
+            Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  const message = `
-Hello BÉMI IVORY 👋
 
-Here are my measurements:
+<!-- WhatsApp Floating Button with Hover Label -->
+<div class="fixed bottom-6 right-6 z-50 group">
+  <!-- Hover Text -->
+  <div
+    class="absolute right-16 top-1/2 -translate-y-1/2
+           bg-foreground text-cream text-xs tracking-wide px-4 py-2
+           rounded-full shadow-lg
+           opacity-0 translate-x-2
+           group-hover:opacity-100 group-hover:translate-x-0
+           transition-all duration-300 whitespace-nowrap"
+  >
+    Chat with us
+  </div>
 
-Bust: ${bust}
-Waist: ${waist}
-Hips: ${hips}
-Height: ${height}
+  <!-- WhatsApp Button -->
+  <a
+    href="https://wa.me/2348065196574?text=Hello%20Bemi%20Ivory,%20I’d%20love%20to%20make%20an%20enquiry."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366]
+           shadow-xl hover:scale-110 transition-transform"
+    aria-label="Chat on WhatsApp"
+  >
+    <!-- WhatsApp Icon -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      fill="white"
+      class="w-7 h-7"
+    >
+      <path d="M16.04 2.003c-7.732 0-14.03 6.297-14.03 14.03 0 2.48.648 4.907 1.878 7.05L2 30l7.154-1.86c2.07 1.133 4.397 1.73 6.886 1.73h.002c7.73 0 14.03-6.297 14.03-14.03 0-3.75-1.46-7.276-4.11-9.92-2.65-2.65-6.17-4.117-9.92-4.117zm0 25.64c-2.21 0-4.38-.593-6.28-1.716l-.45-.266-4.245 1.104 1.133-4.137-.293-.425c-1.23-1.93-1.88-4.17-1.88-6.47 0-6.63 5.4-12.03 12.03-12.03 3.21 0 6.23 1.25 8.49 3.51 2.27 2.27 3.52 5.29 3.52 8.52 0 6.63-5.4 12.03-12.03 12.03zm6.6-8.91c-.36-.18-2.13-1.05-2.46-1.17-.33-.12-.57-.18-.81.18-.24.36-.93 1.17-1.14 1.41-.21.24-.42.27-.78.09-.36-.18-1.52-.56-2.9-1.78-1.07-.95-1.79-2.12-2-2.48-.21-.36-.02-.56.16-.74.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.7-.59-.6-.81-.61h-.69c-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3 0 1.77 1.29 3.48 1.47 3.72.18.24 2.54 3.88 6.15 5.44.86.37 1.53.59 2.05.75.86.27 1.65.23 2.27.14.69-.1 2.13-.87 2.43-1.71.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42z"/>
+    </svg>
+  </a>
+</div>
 
-Notes:
-${notes}
-
-I’d love help choosing the right size or custom option.
-  `;
-
-  const url = "https://wa.me/2348065196574?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
-</script>
-
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>
