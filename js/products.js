@@ -4,7 +4,7 @@ const products = [
     id: "1",
     name: "Silk Midi Dress",
     price: 385,
-    category: "ready-to-wear",
+    category: "dresses",
     description: "An elegant silk midi dress with a flattering silhouette. Perfect for special occasions or elevated everyday wear.",
     details: "100% Mulberry Silk. Dry clean only. Made in Italy.",
     images: [
@@ -24,7 +24,7 @@ const products = [
     id: "2",
     name: "Cashmere Wrap Cardigan",
     price: 295,
-    category: "ready-to-wear",
+    category: "dresses",
     description: "Luxuriously soft cashmere cardigan with an elegant wrap design. A versatile piece for layering.",
     details: "100% Cashmere. Hand wash cold. Made in Scotland.",
     images: [
@@ -36,14 +36,14 @@ const products = [
       { name: "Oatmeal", hex: "#D4C4A8" },
       { name: "Charcoal", hex: "#36454F" }
     ],
-    featured: true,
+    featured: false,
     isNew: false
   },
   {
     id: "3",
     name: "Wide Leg Trousers",
     price: 225,
-    category: "africanheritage",
+    category: "tops",
     description: "High-waisted wide leg trousers with a relaxed, flowing silhouette. Crafted from premium wool blend.",
     details: "70% Wool, 30% Polyester. Dry clean only. Made in Portugal.",
     images: [
@@ -56,13 +56,13 @@ const products = [
       { name: "Camel", hex: "#C19A6B" }
     ],
     featured: true,
-    isNew: false
+    isNew: true
   },
   {
     id: "4",
     name: "Leather Belt",
     price: 145,
-    category: "africanheritage",
+    category: "tops",
     description: "Handcrafted leather belt with gold-tone buckle. Timeless elegance for any outfit.",
     details: "100% Italian Leather. Wipe clean. Made in Italy.",
     images: [
@@ -81,7 +81,7 @@ const products = [
     id: "5",
     name: "Linen Blouse",
     price: 175,
-    category: "bespoke",
+    category: ["skirts","africanheritage"], 
     description: "Relaxed linen blouse with delicate button details. Perfect for warm days.",
     details: "100% Linen. Machine wash cold. Made in France.",
     images: [
@@ -93,14 +93,14 @@ const products = [
       { name: "White", hex: "#FFFFFF" },
       { name: "Sky Blue", hex: "#87CEEB" }
     ],
-    featured: false,
+    featured: true,
     isNew: true
   },
   {
     id: "6",
     name: "Satin Evening Gown",
     price: 550,
-    category: "bespoke",
+    category: "trousers",
     description: "Stunning floor-length satin gown with elegant draping. For your most special moments.",
     details: "100% Silk Satin. Dry clean only. Made in Italy.",
     images: [
@@ -112,14 +112,14 @@ const products = [
       { name: "Navy", hex: "#1B3A57" },
       { name: "Emerald", hex: "#50C878" }
     ],
-    featured: false,
-    isNew: false
+    featured: true,
+    isNew: true
   },
   {
     id: "7",
     name: "Silk Scarf",
     price: 125,
-    category: "bespoke",
+    category: "africanheritage",
     description: "Hand-painted silk scarf with exclusive print. Add a touch of artistry to any look.",
     details: "100% Silk. Dry clean only. Made in Italy.",
     images: [
@@ -137,7 +137,7 @@ const products = [
     id: "8",
     name: "Tailored Blazer",
     price: 425,
-    category: "bespoke",
+    category: "africanheritage",
     description: "Impeccably tailored blazer with a modern silhouette. The cornerstone of any wardrobe.",
     details: "98% Wool, 2% Elastane. Dry clean only. Made in England.",
     images: [
@@ -172,24 +172,37 @@ const bankAccounts = {
   }
 };
 
-// Helper function to get product by ID
+// Helper functions
 function getProductById(id) {
   return products.find(p => p.id === id);
 }
 
-// Helper function to get products by category
 function getProductsByCategory(category) {
   if (category === 'all' || !category) return products;
   if (category === 'new') return products.filter(p => p.isNew);
-  return products.filter(p => p.category === category);
+
+  return products.filter(p =>
+    Array.isArray(p.category)
+      ? p.category.includes(category)
+      : p.category === category
+  );
 }
 
-// Helper function to get featured products
+
 function getFeaturedProducts() {
   return products.filter(p => p.featured);
 }
 
-// Format price
-function formatPrice(price) {
-  return `$${price.toFixed(2)}`;
+// Format price in a given currency
+function formatPrice(priceUSD, currency = 'USD') {
+  const rate = currencyRates[currency] || 1;
+  const converted = priceUSD * rate;
+
+  switch(currency) {
+    case 'NGN': return `₦${converted.toFixed(0)}`;
+    case 'GBP': return `£${converted.toFixed(2)}`;
+    case 'EUR': return `€${converted.toFixed(2)}`;
+    case 'USD':
+    default: return `$${converted.toFixed(2)}`;
+  }
 }
