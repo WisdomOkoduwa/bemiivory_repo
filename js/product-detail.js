@@ -29,9 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
   currentProduct = getProductById(productId);
   if (!currentProduct) return window.location.href = 'shop.html';
 
+  // --- Helper: update product price based on currency ---
+  function updateProductPrice() {
+    const currency = window.currentCurrency || 'USD';
+    const rate = window.currentCurrencyRate || 1;
+    productPriceEl.textContent = formatPrice(currentProduct.price * rate, currency);
+  }
+
   // --- Render product info ---
   productNameEl.textContent = currentProduct.name;
-  productPriceEl.textContent = formatPrice(currentProduct.price);
+  updateProductPrice();
   productDescriptionEl.textContent = currentProduct.description;
   productDetailsEl.textContent = currentProduct.details;
 
@@ -56,7 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.className = 'px-3 py-1 border border-border rounded text-sm hover:bg-accent hover:text-white';
     btn.addEventListener('click', () => {
       selectedSize = size;
-      sizeOptionsDiv.querySelectorAll('button').forEach(b => b.classList.remove('bg-accent', 'text-white'));
+      sizeOptionsDiv.querySelectorAll('button').forEach(b =>
+        b.classList.remove('bg-accent', 'text-white')
+      );
       btn.classList.add('bg-accent', 'text-white');
     });
     sizeOptionsDiv.appendChild(btn);
@@ -72,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       selectedColor = color.name;
       selectedColorNameEl.textContent = color.name;
-      colorOptionsDiv.querySelectorAll('button').forEach(b => b.classList.remove('ring-2', 'ring-accent'));
+      colorOptionsDiv.querySelectorAll('button').forEach(b =>
+        b.classList.remove('ring-2', 'ring-accent')
+      );
       btn.classList.add('ring-2', 'ring-accent');
     });
     colorOptionsDiv.appendChild(btn);
@@ -91,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return {};
   }
 
-  // --- Add to Bag ---
+  // --- Add to Cart ---
   const addBtn = document.getElementById('addToCartBtn');
   if (addBtn) {
     addBtn.addEventListener('click', () => {
@@ -109,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currencySelect) {
     currencySelect.addEventListener('change', () => {
       if (!currentProduct) return;
-      productPriceEl.textContent = formatPrice(currentProduct.price);
+      updateProductPrice();
       Cart.updateUI();
     });
   }

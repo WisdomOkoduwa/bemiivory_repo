@@ -90,6 +90,27 @@ function updatePageTitle() {
   titleEl.textContent = titles[currentCategory] || 'Shop All';
 }
 
+// Format price helper (uses global currency from main.js)
+function formatPrice(amount, currency = null) {
+  // Use global currency from main.js if available, otherwise fallback
+  const currentCurrency = currency || window.currentCurrency || 'USD';
+  
+  if (typeof amount === 'string') amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+  
+  if (isNaN(amount)) {
+    console.error('Invalid amount passed to formatPrice:', amount);
+    return '$0.00';
+  }
+
+  let symbol = '$';
+  if (currentCurrency === 'NGN') symbol = '₦';
+  if (currentCurrency === 'GBP') symbol = '£';
+  if (currentCurrency === 'EUR') symbol = '€';
+
+  // Don't multiply here - amount is already converted
+  return `${symbol}${amount.toFixed(2)}`;
+}
+
 // Sort Products
 function sortProducts(productsToSort) {
   const sorted = [...productsToSort];
@@ -124,6 +145,10 @@ function renderProducts() {
     return;
   }
   
+  // Get current currency rate and currency
+  const currencyRate = window.currentCurrencyRate || 1;
+  const currency = window.currentCurrency || 'USD';
+  
   container.innerHTML = filteredProducts.map(product => `
     <a href="product.html?id=${product.id}" class="product-card group">
       <div class="aspect-[3/4] overflow-hidden bg-secondary mb-4">
@@ -136,7 +161,9 @@ function renderProducts() {
       <div class="space-y-1">
         ${product.isNew ? '<span class="text-xs tracking-wider text-accent uppercase">New</span>' : ''}
         <h3 class="font-medium text-sm">${product.name}</h3>
-        <p class="text-sm text-muted-foreground">${formatPrice(product.price)}</p>
+        <p class="text-sm text-muted-foreground" data-base-price="${product.price}">
+          ${formatPrice(product.price * currencyRate, currency)}
+        </p>
       </div>
     </a>
   `).join('');

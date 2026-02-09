@@ -1,39 +1,24 @@
 // ====== cart.js ======
 
-// --- Currency Setup ---
-const currencyRates = { NGN: 1380, USD: 1, EUR: 0.84, GBP: 0.73 };
-const currencySymbols = { NGN: '₦', USD: '$', EUR: '€', GBP: '£' };
-let selectedCurrency = localStorage.getItem('selectedCurrency') || 'NGN';
-
-// Currency Elements
-const currencySelect = document.getElementById('currencySelect');
-const currencyFlag = document.getElementById('currencyFlag');
-
-if (currencySelect) {
-  currencySelect.value = selectedCurrency;
-  updateCurrencyFlag(selectedCurrency);
-
-  currencySelect.addEventListener('change', (e) => {
-    selectedCurrency = e.target.value;
-    localStorage.setItem('selectedCurrency', selectedCurrency);
-    updateCurrencyFlag(selectedCurrency);
-    Cart.updateUI();
-  });
-}
-
-function updateCurrencyFlag(currency) {
-  const option = currencySelect.querySelector(`option[value="${currency}"]`);
-  if (option) {
-    currencyFlag.src = option.dataset.flag;
-    currencyFlag.alt = currency;
-  }
-}
-
 // --- Price Formatting ---
-function formatPrice(amount) {
-  const converted = amount * (currencyRates[selectedCurrency] || 1);
-  const symbol = currencySymbols[selectedCurrency] || '$';
-  return `${symbol}${converted.toFixed(2)}`;
+function formatPrice(amount, currency = null) {
+  const currentCurrency = currency || window.currentCurrency || 'USD';
+
+  if (typeof amount === 'string') {
+    amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+  }
+
+  if (isNaN(amount)) {
+    console.error('Invalid amount passed to formatPrice:', amount);
+    return '$0.00';
+  }
+
+  let symbol = '$';
+  if (currentCurrency === 'NGN') symbol = '₦';
+  if (currentCurrency === 'GBP') symbol = '£';
+  if (currentCurrency === 'EUR') symbol = '€';
+
+  return `${symbol}${amount.toFixed(2)}`;
 }
 
 // ====== Cart Management ======
@@ -55,8 +40,10 @@ const Cart = {
     const key = size === 'Custom' ? JSON.stringify(sizeDetails) : size;
 
     const existingIndex = this.items.findIndex(
-      item => item.id === product.id && item.color === color && 
-              (item.size === key || JSON.stringify(item.sizeDetails) === key)
+      item =>
+        item.id === product.id &&
+        item.color === color &&
+        (item.size === key || JSON.stringify(item.sizeDetails) === key)
     );
 
     if (existingIndex > -1) {
@@ -65,7 +52,7 @@ const Cart = {
       this.items.push({
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: product.price, // USD base price
         image: product.images[0],
         size,
         color,
@@ -96,8 +83,12 @@ const Cart = {
     }
   },
 
+  // --- Totals remain in USD ---
   getTotal() {
-    return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    return this.items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
   },
 
   getTotalItems() {
@@ -127,6 +118,9 @@ const Cart = {
 
     if (!itemsContainer) return;
 
+    const rate = window.currentCurrencyRate || 1;
+    const currency = window.currentCurrency || 'USD';
+
     if (this.items.length === 0) {
       itemsContainer.innerHTML = `
         <div class="flex flex-col items-center justify-center h-full text-center">
@@ -147,6 +141,9 @@ const Cart = {
         sizeInfo = ` — Bust: ${item.sizeDetails.bust}", Waist: ${item.sizeDetails.waist}", Hips: ${item.sizeDetails.hips}"`;
         if (item.sizeDetails.height) sizeInfo += `, Height: ${item.sizeDetails.height}"`;
       }
+
+      const lineTotal = item.price * item.quantity * rate;
+
       return `
         <div class="flex gap-4 pb-4 border-b border-border">
           <img src="${item.image}" alt="${item.name}" class="w-20 h-24 object-cover">
@@ -166,7 +163,9 @@ const Cart = {
                 <span class="px-3 py-1 text-sm">${item.quantity}</span>
                 <button onclick="Cart.updateQuantity(${index}, ${item.quantity + 1})" class="px-2 py-1 hover:bg-secondary">+</button>
               </div>
-              <span class="font-medium">${formatPrice(item.price * item.quantity)}</span>
+              <span class="font-medium">
+                ${formatPrice(lineTotal, currency)}
+              </span>
             </div>
           </div>
         </div>
@@ -174,7 +173,10 @@ const Cart = {
     }).join('');
 
     footerEl?.classList.remove('hidden');
-    if (totalEl) totalEl.textContent = formatPrice(this.getTotal());
+
+    if (totalEl) {
+      totalEl.textContent = formatPrice(this.getTotal() * rate, currency);
+    }
   },
 
   setupEventListeners() {

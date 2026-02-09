@@ -1,17 +1,17 @@
+// Initialize currency settings FIRST, before DOMContentLoaded
+window.currentCurrency = 'USD';  // DEFAULT TO USD
+window.currencyRates = {
+  USD: 1,      // Base currency
+  NGN: 1380,   // 1 USD = 1380 NGN
+  GBP: 0.73,   // 1 USD = 0.73 GBP
+  EUR: 0.84    // 1 USD = 0.84 EUR
+};
+window.currentCurrencyRate = window.currencyRates['USD']; // This should be 1
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initFeaturedProducts();
   initNewsletter();
-
-  // Set base currency
-  window.currentCurrency = 'USD';
-  window.currencyRates = {
-    USD: 1,
-    NGN: 1580,
-    GBP: 1.35,
-    EUR: 1.18
-  };
-  window.currentCurrencyRate = window.currencyRates[window.currentCurrency];
 
   // Currency selector
   const currencySelect = document.getElementById('currencySelect');
@@ -66,6 +66,10 @@ function initFeaturedProducts() {
 
 // Create Product Card HTML
 function createProductCard(product) {
+  // Use fallback values if window variables aren't set
+  const currencyRate = window.currentCurrencyRate || 1;
+  const currency = window.currentCurrency || 'USD';
+  
   return `
     <a href="product.html?id=${product.id}" class="product-card group">
       <div class="aspect-[3/4] overflow-hidden bg-secondary mb-4">
@@ -79,7 +83,7 @@ function createProductCard(product) {
         ${product.isNew ? '<span class="text-xs tracking-wider text-accent uppercase">New</span>' : ''}
         <h3 class="font-medium text-sm">${product.name}</h3>
         <p class="text-sm text-muted-foreground" data-base-price="${product.price}">
-          ${formatPrice(product.price * window.currentCurrencyRate, window.currentCurrency)}
+          ${formatPrice(product.price * currencyRate, currency)}
         </p>
       </div>
     </a>
@@ -107,6 +111,12 @@ function initNewsletter() {
 // Format price helper
 function formatPrice(amount, currency = 'USD') {
   if (typeof amount === 'string') amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+  
+  // Check if amount is valid
+  if (isNaN(amount)) {
+    console.error('Invalid amount passed to formatPrice:', amount);
+    return '$0.00';
+  }
 
   let symbol = '$';
   if (currency === 'NGN') symbol = '₦';
@@ -128,6 +138,10 @@ if (document.getElementById('mainImage')) {
     const product = getProductById(productId);
     
     if (product) {
+      // Use fallback values
+      const currencyRate = window.currentCurrencyRate || 1;
+      const currency = window.currentCurrency || 'USD';
+      
       // Update breadcrumb
       document.getElementById('breadcrumbProduct').textContent = product.name;
       
@@ -136,7 +150,7 @@ if (document.getElementById('mainImage')) {
       document.getElementById('mainImage').alt = product.name;
       document.getElementById('productCategory').textContent = product.category.replace('-', ' ').toUpperCase();
       document.getElementById('productName').textContent = product.name;
-      document.getElementById('productPrice').textContent = formatPrice(product.price * window.currentCurrencyRate, window.currentCurrency);
+      document.getElementById('productPrice').textContent = formatPrice(product.price * currencyRate, currency);
       document.getElementById('productDescription').textContent = product.description;
       document.getElementById('productDetails').textContent = product.details;
       
@@ -219,7 +233,7 @@ if (document.getElementById('mainImage')) {
             </div>
             <h3 class="text-sm mb-1">${relatedProduct.name}</h3>
             <p class="text-sm text-muted-foreground" data-base-price="${relatedProduct.price}">
-              ${formatPrice(relatedProduct.price * window.currentCurrencyRate, window.currentCurrency)}
+              ${formatPrice(relatedProduct.price * currencyRate, currency)}
             </p>
           `;
           relatedContainer.appendChild(card);

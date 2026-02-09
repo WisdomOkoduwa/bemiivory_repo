@@ -188,21 +188,6 @@ function getProductsByCategory(category) {
   );
 }
 
-
 function getFeaturedProducts() {
   return products.filter(p => p.featured);
-}
-
-// Format price in a given currency
-function formatPrice(priceUSD, currency = 'USD') {
-  const rate = currencyRates[currency] || 1;
-  const converted = priceUSD * rate;
-
-  switch(currency) {
-    case 'NGN': return `₦${converted.toFixed(0)}`;
-    case 'GBP': return `£${converted.toFixed(2)}`;
-    case 'EUR': return `€${converted.toFixed(2)}`;
-    case 'USD':
-    default: return `$${converted.toFixed(2)}`;
-  }
 }
