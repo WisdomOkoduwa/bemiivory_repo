@@ -8,7 +8,8 @@ window.currencyRates = {
 };
 window.currentCurrencyRate = window.currencyRates['USD']; // This should be 1
 
-document.addEventListener('DOMContentLoaded', () => {
+// ✅ FIXED: single bulletproof init — works regardless of when Cloudflare loads the script
+function initAll() {
   initMobileMenu();
   initFeaturedProducts();
   initNewsletter();
@@ -41,11 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
+}
 
-// ✅ REQUIRED FIX: fallback init if DOM already loaded
-if (document.readyState !== 'loading') {
-  initMobileMenu();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
 }
 
 // Mobile Menu Toggle
