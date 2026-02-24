@@ -55,11 +55,22 @@ function initMobileMenu() {
   const menuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+  if (!menuBtn || !mobileMenu) {
+    // Retry once after a short delay (handles Cloudflare async edge cases)
+    setTimeout(initMobileMenu, 100);
+    return;
   }
+
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('block');
+    } else {
+      mobileMenu.classList.remove('block');
+      mobileMenu.classList.add('hidden');
+    }
+  });
 }
 
 // Render Featured Products
