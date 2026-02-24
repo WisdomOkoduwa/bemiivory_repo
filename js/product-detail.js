@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const customHeightInput = document.getElementById('customHeight');
 
   let currentProduct = null;
-  let selectedSize = null;
+  window.selectedSize = null;
   let selectedColor = null;
 
   // --- Get product ID from URL ---
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.textContent = size;
     btn.className = 'px-3 py-1 border border-border rounded text-sm hover:bg-accent hover:text-white';
     btn.addEventListener('click', () => {
-      selectedSize = size;
+      window.selectedSize = size;
       sizeOptionsDiv.querySelectorAll('button').forEach(b =>
         b.classList.remove('bg-accent', 'text-white')
       );
@@ -91,22 +91,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Helper to get selected size details ---
   function getSizeDetails() {
-    if (selectedSize === 'Custom') {
-      return {
-        bust: customBustInput?.value || 0,
-        waist: customWaistInput?.value || 0,
-        hips: customHipsInput?.value || 0,
-        height: customHeightInput?.value || 0
-      };
-    }
-    return {};
+  if (window.selectedSize === 'Custom') {
+    // ✅ Read from localStorage where the modal saved them
+    const saved = JSON.parse(localStorage.getItem('bemi_measurements')) || {};
+    return {
+      bust: saved.bust || 0,
+      waist: saved.waist || 0,
+      hips: saved.hips || 0,
+      height: saved.height || 0,
+      notes: saved.notes || ''
+    };
   }
+  return {};
+}
 
   // --- Add to Cart ---
   const addBtn = document.getElementById('addToCartBtn');
   if (addBtn) {
     addBtn.addEventListener('click', () => {
-      if (!selectedSize) selectedSize = currentProduct.sizes[0];
+      if (!window.selectedSize) window.selectedSize = currentProduct.sizes[0];
       if (!selectedColor) selectedColor = currentProduct.colors[0].name;
 
       const sizeDetails = getSizeDetails();
@@ -124,5 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
       Cart.updateUI();
     });
   }
+
+  // wherever you load the product details
+window.currentProduct = product; // ← add this line
 
 });

@@ -13,6 +13,7 @@ function initAll() {
   initMobileMenu();
   initFeaturedProducts();
   initNewsletter();
+  initSizeGuideModal();
 
   // Currency selector
   const currencySelect = document.getElementById('currencySelect');
@@ -140,4 +141,57 @@ function formatPrice(amount, currency = 'USD') {
   if (currency === 'EUR') symbol = '€';
 
   return `${symbol}${amount.toFixed(2)}`;
+}
+
+function initSizeGuideModal() {
+  const openBtn = document.getElementById('openSizeGuide');
+  const closeBtn = document.getElementById('closeSizeGuide');
+  const modal = document.getElementById('sizeGuideModal');
+  const confirmBtn = document.getElementById('confirmSize');
+
+  if (!openBtn || !closeBtn || !modal) return;
+
+  openBtn.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.add('hidden');
+  });
+
+  // Save Measurements
+ confirmBtn.addEventListener('click', () => {
+  const measurements = {
+    bust: document.getElementById('inputBust').value.trim(),
+    waist: document.getElementById('inputWaist').value.trim(),
+    hips: document.getElementById('inputHips').value.trim(),
+    height: document.getElementById('inputHeight').value.trim(),
+    notes: document.getElementById('inputNotes').value.trim(),
+  };
+
+  if (!measurements.bust || !measurements.waist || !measurements.hips) {
+    alert('Please enter at least your Bust, Waist, and Hips measurements.');
+    return;
+  }
+
+  // Save to localStorage
+  localStorage.setItem('bemi_measurements', JSON.stringify(measurements));
+
+  // ✅ Tell the product page that size is now 'Custom'
+  if (typeof window.selectedSize !== 'undefined') {
+    window.selectedSize = 'Custom';
+  }
+
+  // ✅ Visually deselect all size buttons and mark Custom as active
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  Cart.showToast('Measurements saved — click Add to Bag to continue.');
+  modal.classList.add('hidden');
+});
 }

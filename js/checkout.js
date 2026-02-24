@@ -77,11 +77,16 @@ function renderOrderSummary() {
         <div class="flex-1 min-w-0">
           <h3 class="text-sm font-medium mb-1 truncate">${item.name}</h3>
           <p class="text-xs text-muted-foreground mb-2">
-            ${item.size === 'Custom' && item.sizeDetails
-              ? `Custom fit`
-              : item.size
-            } • ${item.color}
-          </p>
+          ${(() => {
+            if (item.size === 'Custom' && item.sizeDetails && Object.keys(item.sizeDetails).length) {
+              let info = `Custom — Bust: ${item.sizeDetails.bust}", Waist: ${item.sizeDetails.waist}", Hips: ${item.sizeDetails.hips}"`;
+              if (item.sizeDetails.height) info += `, Height: ${item.sizeDetails.height}"`;
+              if (item.sizeDetails.notes) info += `, Notes: ${item.sizeDetails.notes}`;
+              return info;
+            }
+            return item.size;
+          })()} • ${item.color}
+        </p>
           <p class="text-sm font-medium text-accent">
             ${formatPrice(itemTotal, currency)}
           </p>

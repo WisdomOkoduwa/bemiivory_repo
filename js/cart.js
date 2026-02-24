@@ -140,6 +140,7 @@ const Cart = {
       if (item.size === 'Custom' && item.sizeDetails && Object.keys(item.sizeDetails).length) {
         sizeInfo = ` — Bust: ${item.sizeDetails.bust}", Waist: ${item.sizeDetails.waist}", Hips: ${item.sizeDetails.hips}"`;
         if (item.sizeDetails.height) sizeInfo += `, Height: ${item.sizeDetails.height}"`;
+        if (item.sizeDetails.notes) sizeInfo += `, Notes: ${item.sizeDetails.notes}`;
       }
 
       const lineTotal = item.price * item.quantity * rate;
