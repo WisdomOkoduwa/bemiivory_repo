@@ -163,3 +163,7 @@ ul.reveal li::before {
   background-color: #ddd;
   margin: 2rem 0;
 }
+
+#mobileMenu:not(.hidden) {
+  display: block;
+}
