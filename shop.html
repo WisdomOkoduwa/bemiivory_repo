@@ -200,6 +200,14 @@
   </div>
 </header>
 
+<!-- MOBILE MENU — completely isolated fix -->
+<script>
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    var menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  });
+</script>
+
 
   <!-- Page Header -->
   <section class="py-12 md:py-16 text-center">
@@ -348,11 +356,10 @@
   </a>
 </div>
 
-<script src="js/main.js" defer></script>
- <script src="js/shop.js" defer></script>
-  <script src="js/products.js" defer></script>
-  
-  <script src="js/cart.js" defer></script>
+<script data-cfasync="false" src="js/products.js"></script>
+<script data-cfasync="false" src="js/cart.js"></script>
+<script data-cfasync="false" src="js/shop.js"></script>
+<script data-cfasync="false" src="js/main.js"></script> 
  
 </body>
 </html>

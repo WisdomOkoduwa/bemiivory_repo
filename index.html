@@ -73,7 +73,7 @@
         <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
 
         <!-- Shop RTW -->
-<div class="relative">
+ <div class="relative">
   <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
   
   <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
@@ -200,6 +200,15 @@
   </div>
 </header>
 
+</header>
+
+<!-- MOBILE MENU — completely isolated fix -->
+<script>
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    var menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  });
+</script>
 
 
   <!-- Hero Section -->
@@ -685,11 +694,8 @@
 
 <script data-cfasync="false" src="js/products.js"></script>
 <script data-cfasync="false" src="js/cart.js"></script>
-<script data-cfasync="false" src="js/main.js"></script>
 <script data-cfasync="false" src="js/shop.js"></script>
-
-
-  
+<script data-cfasync="false" src="js/main.js"></script>
  
 
 </body>
