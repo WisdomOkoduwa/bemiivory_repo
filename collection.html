@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections — BÉMI IVORY</title>
+  <link rel="icon" type="image/svg+xml" href="images/bemi_logo.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(30, 20%, 88%)',
+            background: 'hsl(40, 33%, 98%)',
+            foreground: 'hsl(30, 15%, 15%)',
+            primary: { DEFAULT: 'hsl(30, 15%, 15%)', foreground: 'hsl(40, 33%, 98%)' },
+            secondary: { DEFAULT: 'hsl(30, 20%, 96%)', foreground: 'hsl(30, 15%, 25%)' },
+            muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
+            accent: { DEFAULT: 'hsl(35, 45%, 45%)', foreground: 'hsl(40, 33%, 98%)' },
+            gold: 'hsl(35, 45%, 45%)',
+            cream: 'hsl(40, 33%, 98%)',
+            charcoal: 'hsl(30, 15%, 15%)',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --cream: #F8F4EF;
+      --charcoal: #1C1C1C;
+      --accent: #B8975A;
+      --muted: #7A7570;
+      --border: #E2DBD3;
+      --bg-secondary: #F2EDE7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-weight: 300;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hero */
+    .collection-hero {
+      position: relative;
+      height: 90vh;
+      min-height: 580px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background-color: var(--charcoal);
+    }
+    .collection-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,28,0.92) 0%, rgba(28,28,28,0.15) 55%, transparent 100%);
+    }
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      padding: 4rem 5%;
+      max-width: 820px;
+    }
+
+    /* Accent line */
+    .accent-line {
+      width: 40px;
+      height: 1px;
+      background-color: var(--accent);
+      display: block;
+    }
+
+    /* Collection intro */
+    .collection-intro {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    /* Collection panels — only active one shown */
+    .collection-panel { display: none; }
+    .collection-panel.active { display: block; }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Product card */
+    .product-card {
+      position: relative;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .product-card:nth-child(3n) { border-right: none; }
+    @media (max-width: 900px) {
+      .product-card:nth-child(2n) { border-right: none; }
+      .product-card:nth-child(3n) { border-right: 1px solid var(--border); }
+    }
+    @media (max-width: 560px) {
+      .product-card { border-right: none; }
+    }
+
+    .product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background-color: var(--bg-secondary);
+    }
+
+    /* Dual image hover */
+    .product-img-primary,
+    .product-img-hover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.6s ease;
+    }
+    .product-img-hover { opacity: 0; }
+    .product-card:hover .product-img-primary { opacity: 0; }
+    .product-card:hover .product-img-hover { opacity: 1; }
+
+    /* Hover overlay */
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,28,28,0.0);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      transition: background 0.4s ease;
+      z-index: 3;
+    }
+    .product-card:hover .product-overlay { background: rgba(28,28,28,0.35); }
+    .overlay-cta {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border-bottom: 1px solid rgba(248,244,239,0.5);
+      padding-bottom: 2px;
+      text-decoration: none;
+    }
+    .product-card:hover .overlay-cta { opacity: 1; transform: translateY(0); }
+
+    /* Product info */
+    .product-info {
+      padding: 1.5rem 1.5rem 2rem;
+      background-color: var(--cream);
+    }
+
+    /* Color swatch */
+    .color-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Fabric tag */
+    .fabric-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      display: inline-block;
+    }
+
+    /* Collection nav tabs */
+    .collection-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .collection-tabs::-webkit-scrollbar { display: none; }
+    .tab-link {
+      padding: 1rem 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .tab-link:hover { color: var(--charcoal); }
+    .tab-link.active {
+      color: var(--charcoal);
+      border-bottom-color: var(--charcoal);
+    }
+
+    /* Img placeholder */
+    .img-ph {
+      background: linear-gradient(135deg, #e8e0d5 0%, #d4c9bc 100%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-ph span {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="bg-foreground text-cream py-2.5 text-center">
+    <p class="text-xs tracking-[0.2em] uppercase font-light">Worldwide Shipping</p>
+  </div>
+
+  <!-- Header -->
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+
+  <!-- MAIN HEADER -->
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="flex items-center justify-between h-14 md:h-20">
+
+      <!-- Mobile Menu Button Left -->
+      <button id="mobileMenuBtn" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- DESKTOP NAV -->
+      <nav class="hidden md:flex items-center space-x-8 mx-auto">
+        <a href="index.html" class="text-sm tracking-wide hover:text-accent">HOME</a>
+        <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
+
+        <!-- Shop RTW -->
+ <div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+  
+  <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
+    <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
+    <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
+    <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
+    <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
+    <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
+  </div>
+</div>
+
+
+        <!-- Bespoke -->
+<div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI Ivory BESPOKE</button>
+  
+  <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
+  </div>
+</div>
+
+
+        <a href="collection.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
+        <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
+        <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
+        <a href="faq.html" class="block text-sm">FAQs</a>
+
+      </nav>
+
+      <!-- RIGHT ICONS -->
+      <div class="flex items-center space-x-3 md:space-x-4">
+
+
+       <!-- Cart -->
+<button id="cartBtn" class="p-2 relative hover:text-accent">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+  </svg>
+
+  <!-- Counter -->
+  <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full 
+               flex items-center justify-center hidden">
+    0
+  </span>
+</button>
+
+
+       <!-- Currency Selector (SVG FLAGS) -->
+<div class="relative">
+  <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
+    <option value="USD" data-flag="images/flags/us.svg">USD</option>
+    <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+    <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
+    <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
+  </select>
+
+  <!-- Flag (SVG) -->
+  <img id="currencyFlag" src="images/flags/us.svg" alt="USD" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+
+  <!-- Chevron -->
+  <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+  </svg>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden border-t border-border">
+    <nav class="container mx-auto px-4 py-4 space-y-4">
+      <a href="index.html" class="block text-sm">HOME</a>
+      <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
+
+      <!-- Shop RTW -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          SHOP RTW
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2 space-y-2">
+          <a href="shop.html" class="block text-sm">All</a>
+          <a href="shop.html?category=dresses" class="block text-sm">Dresses</a>
+          <a href="shop.html?category=tops" class="block text-sm">Tops</a>
+          <a href="shop.html?category=skirts" class="block text-sm">Skirts</a>
+          <a href="shop.html?category=trousers" class="block text-sm">Trousers</a>
+          <a href="shop.html?category=africanheritage" class="block text-sm">African Heritage</a>
+        </div>
+      </details>
+
+      <!-- Bespoke -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          BÉMI Ivory Bespoke
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2">
+          <a href="book.html" class="block text-sm">Book a Consultation</a>
+        </div>
+      </details>
+
+      <a href="collection.html" class="block text-sm">COLLECTIONS</a>
+      <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
+      <a href="index.html#contact" class="block text-sm">CONTACT US</a>
+      <a href="faq.html" class="block text-sm">FAQs</a>
+
+    </nav>
+  </div>
+</header>
+
+  <!-- ============================================================ -->
+  <!-- COLLECTION HERO -->
+  <!-- ============================================================ -->
+  <section class="collection-hero">
+    <img src="images/bemi_img (1).jpg" alt="BÉMI IVORY Collection" onerror="this.style.display='none'">
+    <div class="hero-gradient"></div>
+    <div class="hero-text">
+      <p class="reveal" style="font-size:0.65rem; letter-spacing:0.4em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem;">BÉMI IVORY</p>
+      <h1 class="reveal reveal-delay-1" style="font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,6rem); color:var(--cream); font-weight:300; line-height:1.0; margin-bottom:1.5rem;">
+        <em>Collections</em>
+      </h1>
+      <span class="accent-line reveal reveal-delay-2" style="margin-bottom:1.5rem; display:block;"></span>
+      <p class="reveal reveal-delay-3" style="font-size:0.8rem; line-height:1.9; color:rgba(248,244,239,0.7); max-width:480px;">
+        A collection born from the intersection of strength and softness — where every silhouette honours the woman who wears it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- COLLECTION TABS -->
+  <!-- ============================================================ -->
+  <div class="collection-tabs">
+    <a class="tab-link active" data-collection="waterfall">Waterfall Collection</a>
+    <a class="tab-link" data-collection="rebirth">The Rebirth Collection</a>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- REBIRTH COLLECTION PANEL -->
+  <!-- ============================================================ -->
+  <div class="collection-panel" id="panel-rebirth">
+
+    <div class="collection-intro">
+      <h2 class="reveal reveal-delay-1" style="font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:400; line-height:1.3; margin-bottom:1.5rem;">
+        The Rebirth Collection
+      </h2>
+      <span class="accent-line reveal reveal-delay-2" style="margin: 0 auto 1.75rem; display:block;"></span>
+      <p class="reveal reveal-delay-3" style="font-size:0.875rem; line-height:1.9; color:var(--muted);">
+        Our debut collection <em>"The Rebirth Collection"</em> was inspired by the Victorian and Elizabethan styles of fashion with a unique touch of contemporary style of affluence that appeals to the modern day eclectic style.
+        The Rebirth Collection represents growth and a new beginning filled with hopes and beautiful dreams for the fashionably confident, resilient, and elegant woman.
+        This collection sets a tone for what BÉMI IVORY stands for: timeless pieces that remain relevant season after season, and thoughtful craftsmanship.
+      </p>
+    </div>
+
+    <div style="border-top: 1px solid var(--border);">
+      <div class="product-grid">
+
+        <!-- PIECE 01 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/rebirth_1.jpeg" alt="Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_1.jpeg" alt="Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+          </div>
+         
+        </div>
+
+        <!-- PIECE 02 -->
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-image-wrap">
+            <img src="images/rebirth_2.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_2.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           </div>
+          
+        </div>
+
+        <!-- PIECE 03 -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-image-wrap">
+           <img src="images/rebirth_3.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_3.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- PIECE 04 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+           <img src="images/rebirth_4.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_4.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+          
+        </div>
+
+        <!-- PIECE 05 -->
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-image-wrap">
+           <img src="images/rebirth_5.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_5.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- PIECE 06 -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-image-wrap">
+           <img src="images/rebirth_6.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_6.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- PIECE 07 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/rebirth_7.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_7.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- PIECE 08 -->
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-image-wrap">
+           <img src="images/rebirth_8.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_8.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- PIECE 09 -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-image-wrap">
+            <img src="images/rebirth_9.jpeg" alt="Piece 02" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/rebirth_9.jpeg" alt="Piece 02 hover" class="product-img-hover" onerror="this.style.display='none'"><div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+           <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- end #panel-rebirth -->
+
+
+  <!-- ============================================================ -->
+  <!-- WATERFALL COLLECTION PANEL -->
+  <!-- ============================================================ -->
+  <div class="collection-panel active" id="panel-waterfall">
+
+    <div class="collection-intro">
+      <h2 class="reveal reveal-delay-1" style="font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:400; line-height:1.3; margin-bottom:1.5rem;">
+        Waterfall Collection
+      </h2>
+      <span class="accent-line reveal reveal-delay-2" style="margin: 0 auto 1.75rem; display:block;"></span>
+      <p class="reveal reveal-delay-3" style="font-size:0.875rem; line-height:1.9; color:var(--muted);">
+        Inspired by the cascading ruffle silhouette, where fabric falls in vertical layers resembling a Waterfall effect, each design reflects the beauty of fluid motion, sculptural form and timeless elegance.
+      </p>
+    </div>
+
+    <div style="border-top: 1px solid var(--border);">
+      <div class="product-grid">
+
+        <!-- LOOK 1 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_1.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_2.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- LOOK 2 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_3.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_4.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+         <!-- LOOK 3 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_5.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_6.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+         <!-- LOOK 4 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_7.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_8.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+         <!-- LOOK 5 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_9.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_10.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- LOOK 6 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_11.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_12.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+         <!-- LOOK 7 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_13.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_14.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+        <!-- LOOK 8 -->
+        <div class="product-card reveal">
+          <div class="product-image-wrap">
+            <img src="images/waterfall_15.jpeg" alt="Waterfall Piece 01" class="product-img-primary" onerror="this.style.display='none'">
+            <img src="images/waterfall_16.jpeg" alt="Waterfall Piece 01 hover" class="product-img-hover" onerror="this.style.display='none'">
+            <div class="img-ph" style="display:none; position:absolute; inset:0;"><span>BÉMI IVORY</span></div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end #panel-waterfall -->
+
+
+  <!-- ============================================================ -->
+  <!-- BESPOKE CTA STRIP -->
+  <!-- ============================================================ -->
+  <section style="background-color:var(--charcoal); color:var(--cream); padding:5rem 5%; display:flex; flex-wrap:wrap; gap:3rem; align-items:center; justify-content:space-between;">
+    <div style="max-width:480px;">
+      <p class="reveal" style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem;">Made for You</p>
+      <h2 class="reveal reveal-delay-1" style="font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:300; line-height:1.3; margin-bottom:1rem;">
+        Every piece can be made<br><em>bespoke.</em>
+      </h2>
+      <p class="reveal reveal-delay-2" style="font-size:0.8rem; line-height:1.9; color:rgba(248,244,239,0.6); margin-bottom:0;">
+        Can't find your size? Want a custom colour or fabric? Book a consultation and we'll create something entirely your own.
+      </p>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <a href="book.html" style="display:inline-block; padding:0.9rem 2.75rem; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; border:1px solid rgba(248,244,239,0.4); color:var(--cream); text-decoration:none; transition:all 0.3s;"
+        onmouseover="this.style.backgroundColor='var(--cream)'; this.style.color='var(--charcoal)'; this.style.borderColor='var(--cream)';"
+        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--cream)'; this.style.borderColor='rgba(248,244,239,0.4)';">
+        Book a Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER CTA -->
+  <!-- ============================================================ -->
+  <section style="background-color:var(--cream); padding:5rem 2rem; text-align:center; border-top:1px solid var(--border);">
+    <div style="max-width:500px; margin:0 auto;">
+      <p class="reveal" style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Explore More</p>
+      <h2 class="reveal reveal-delay-1" style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,3.5vw,2.25rem); font-weight:400; margin-bottom:1.5rem;">Shop the Full Collection</h2>
+      <span class="accent-line reveal reveal-delay-2" style="margin:0 auto 2rem; display:block;"></span>
+      <div class="reveal reveal-delay-3" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="shop.html" style="display:inline-block; padding:0.85rem 2.5rem; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; background-color:var(--charcoal); color:var(--cream); text-decoration:none; transition:background 0.3s;"
+          onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='var(--charcoal)'">Shop All</a>
+        <a href="about.html" style="display:inline-block; padding:0.85rem 2.5rem; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; border:1px solid var(--charcoal); color:var(--charcoal); text-decoration:none; transition:all 0.3s;"
+          onmouseover="this.style.backgroundColor='var(--charcoal)'; this.style.color='var(--cream)'"
+          onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--charcoal)'">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    // Mobile menu
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      var menu = document.getElementById('mobileMenu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    });
+
+    // Scroll reveal observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Tab switching
+    const tabLinks = document.querySelectorAll('.tab-link');
+
+    tabLinks.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Update active tab
+        tabLinks.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Show matching panel, hide others
+        const target = this.dataset.collection;
+        document.querySelectorAll('.collection-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        const activePanel = document.getElementById('panel-' + target);
+        activePanel.classList.add('active');
+
+        // Re-trigger reveal animations in newly shown panel
+        activePanel.querySelectorAll('.reveal').forEach(el => {
+          el.classList.remove('visible');
+          setTimeout(() => observer.observe(el), 50);
+        });
+
+        // Smooth scroll to tabs
+        document.querySelector('.collection-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

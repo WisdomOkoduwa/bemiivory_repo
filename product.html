@@ -72,7 +72,7 @@
         <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
 
         <!-- Shop RTW -->
-<div class="relative">
+ <div class="relative">
   <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
   
   <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
@@ -89,7 +89,7 @@
 
         <!-- Bespoke -->
 <div class="relative">
-  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI BESPOKE</button>
+  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI Ivory BESPOKE</button>
   
   <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
               peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
@@ -98,22 +98,16 @@
 </div>
 
 
-        <a href="index.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
+        <a href="collection.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
         <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
         <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
+        <a href="faq.html" class="block text-sm">FAQs</a>
 
       </nav>
 
       <!-- RIGHT ICONS -->
       <div class="flex items-center space-x-3 md:space-x-4">
 
-        <!-- Search -->
-        <button class="p-2 hover:text-accent">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-        </button>
 
        <!-- Cart -->
 <button id="cartBtn" class="p-2 relative hover:text-accent">
@@ -130,7 +124,7 @@
 </button>
 
 
-  <!-- Currency Selector (SVG FLAGS) -->
+       <!-- Currency Selector (SVG FLAGS) -->
 <div class="relative">
   <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
     <option value="USD" data-flag="images/flags/us.svg">USD</option>
@@ -149,13 +143,12 @@
 </div>
 
 
-
       </div>
     </div>
   </div>
 
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-border">
+  <div id="mobileMenu" class="hidden border-t border-border">
     <nav class="container mx-auto px-4 py-4 space-y-4">
       <a href="index.html" class="block text-sm">HOME</a>
       <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
@@ -181,7 +174,7 @@
       <!-- Bespoke -->
       <details class="group">
         <summary class="flex items-center justify-between cursor-pointer text-sm">
-          BÉMI Bespoke
+          BÉMI Ivory Bespoke
           <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -191,7 +184,7 @@
         </div>
       </details>
 
-      <a href="index.html" class="block text-sm">COLLECTIONS</a>
+      <a href="collection.html" class="block text-sm">COLLECTIONS</a>
       <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
       <a href="index.html#contact" class="block text-sm">CONTACT US</a>
       <a href="faq.html" class="block text-sm">FAQs</a>
@@ -199,6 +192,16 @@
     </nav>
   </div>
 </header>
+
+</header>
+
+<!-- MOBILE MENU — completely isolated fix -->
+<script>
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    var menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  });
+</script>
 
   <!-- Breadcrumb -->
   <div class="container mx-auto px-4 md:px-6 py-4">
@@ -261,7 +264,7 @@
             <div id="colorOptions" class="flex gap-2">
               <!-- Color buttons inserted by JS -->
             </div>
-          </div>
+          </div>          
 
           <!-- Add to Cart -->
           <button id="addToCartBtn" class="w-full bg-foreground text-cream py-4 text-sm tracking-wide uppercase hover:bg-accent transition-colors">
@@ -356,46 +359,25 @@
 </div>
 
 
-  <!-- Footer -->
+   <!-- Footer -->
   <footer class="bg-foreground text-cream py-16">
     <div class="container mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div>
           <h3 class="font-display text-xl mb-4">BÉMI IVORY</h3>
-          <p class="text-cream/70 text-sm">Crafting timeless elegance for the modern woman.</p>
         </div>
         <div>
-          <h4 class="text-sm tracking-wide uppercase mb-4">Shop</h4>
-          <ul class="space-y-2 text-sm text-cream/70">
-            <li><a href="shop.html?category=new" class="hover:text-cream transition-colors">New Arrivals</a></li>
-            <li><a href="shop.html?category=ready-to-wear" class="hover:text-cream transition-colors">Ready-To-Wear</a></li>
-            <li><a href="shop.html?category=africanheritage" class="hover:text-cream transition-colors">African Heritage</a></li>
-            <li><a href="shop.html?category=bespoke" class="hover:text-cream transition-colors">BÉMI IVORY Bespoke</a></li>
-          </ul>
+          <h4 class="text-sm tracking-wide uppercase mb-4"><a href="about.html">About Us</a></h4>
         </div>
         <div>
-          <h4 class="text-sm tracking-wide uppercase mb-4">Help</h4>
-          <ul class="space-y-2 text-sm text-cream/70">
-            <li><a href="#" class="hover:text-cream transition-colors">Shipping Info</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Returns</a></li>
-            <li><a href="size.html" class="hover:text-cream transition-colors">Size Guide</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Contact Us</a></li>
-          </ul>
+          <h4 class="text-sm tracking-wide uppercase mb-4"><a href="policy.html">Legal Terms & Conditions</a></h4>
         </div>
         <div>
-          <h4 class="text-sm tracking-wide uppercase mb-4">About</h4>
-          <ul class="space-y-2 text-sm text-cream/70">
-            <li><a href="#" class="hover:text-cream transition-colors">Our Story</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Sustainability</a></li>
-            <li><a href="#" class="hover:text-cream transition-colors">Careers</a></li>
-          </ul>
+          <h4 class="text-sm tracking-wide uppercase mb-4"><a href="faq.html">FAQs</a></h4>
         </div>
       </div>
       <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-cream/50">
         <p>&copy; 2026 BÉMI IVORY. All rights reserved.</p>
-        <div class="flex gap-6 mt-4 md:mt-0">
-          <a href="policy.html" class="hover:text-cream transition-colors">Privacy Policy & Terms of Service</a>
-        </div>
       </div>
     </div>
   </footer>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — BÉMI IVORY</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F8F4EF;
+      --charcoal: #1C1C1C;
+      --accent: #B8975A;
+      --muted: #7A7570;
+      --border: #E2DBD3;
+      --bg-secondary: #F2EDE7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-weight: 300;
+    }
+
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* Fade-in animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    /* Hero */
+    .hero-section {
+      position: relative;
+      height: 80vh;
+      min-height: 520px;
+      background-color: var(--charcoal);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      opacity: 0.45;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,28,0.85) 0%, rgba(28,28,28,0.2) 60%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 4rem 2.5rem;
+      max-width: 720px;
+    }
+
+    /* Divider line */
+    .accent-line {
+      width: 48px;
+      height: 1px;
+      background-color: var(--accent);
+    }
+
+    /* Brand story section */
+    .brand-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 768px) {
+      .brand-section { grid-template-columns: 1fr; }
+      .brand-img-col { min-height: 320px; }
+    }
+
+    .brand-img-col {
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+    }
+
+    .brand-img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s ease;
+    }
+
+    .brand-img-col:hover img {
+      transform: scale(1.04);
+    }
+
+    .brand-text-col {
+      background-color: var(--bg-secondary);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .brand-text-col { padding: 3rem 2rem; }
+    }
+
+    /* Values strip */
+    .values-strip {
+      background-color: var(--charcoal);
+      color: var(--cream);
+      padding: 4rem 2.5rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .values-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    /* Founder section */
+    .founder-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 768px) {
+      .founder-section { grid-template-columns: 1fr; }
+    }
+
+    .founder-img-col {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .founder-img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.9s ease;
+    }
+
+    .founder-img-col:hover img {
+      transform: scale(1.03);
+    }
+
+    .founder-text-col {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .founder-text-col { padding: 3rem 2rem; }
+    }
+
+    /* Credentials */
+    .credential {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .credential:last-child { border-bottom: none; }
+
+    .credential-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      background-color: var(--charcoal);
+      color: var(--cream);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    /* Nav placeholder styling */
+    .top-bar {
+      background-color: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Image placeholder fallback */
+    .img-placeholder {
+      background: linear-gradient(135deg, #d4c9bc 0%, #b8a898 50%, #9c8d7e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BÉMI IVORY Luxury Fashion | Elegant Designs</title>
+  <link rel="icon" type="image/svg+xml" href="images/bemi_logo.svg">
+
+  <meta name="description" content="Discover our curated collection of luxury fashion pieces designed with purpose and elegance.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(30, 20%, 88%)',
+            background: 'hsl(40, 33%, 98%)',
+            foreground: 'hsl(30, 15%, 15%)',
+            primary: { DEFAULT: 'hsl(30, 15%, 15%)', foreground: 'hsl(40, 33%, 98%)' },
+            secondary: { DEFAULT: 'hsl(30, 20%, 96%)', foreground: 'hsl(30, 15%, 25%)' },
+            muted: { DEFAULT: 'hsl(30, 15%, 94%)', foreground: 'hsl(30, 10%, 45%)' },
+            accent: { DEFAULT: 'hsl(35, 45%, 45%)', foreground: 'hsl(40, 33%, 98%)' },
+            gold: 'hsl(35, 45%, 45%)',
+            cream: 'hsl(40, 33%, 98%)',
+            charcoal: 'hsl(30, 15%, 15%)',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+
+  <!-- Announcement Bar -->
+  <div class="bg-foreground text-cream py-2.5 text-center">
+    <p class="text-xs tracking-[0.2em] uppercase font-light">
+      Welcome to BÉMI IVORY where each piece is thoughtfully crafted to reflect elegance and individuality.
+    </p>
+  </div>
+
+ <!-- Header -->
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+
+  <!-- MAIN HEADER -->
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="flex items-center justify-between h-14 md:h-20">
+
+      <!-- Mobile Menu Button Left -->
+      <button id="mobileMenuBtn" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- DESKTOP NAV -->
+      <nav class="hidden md:flex items-center space-x-8 mx-auto">
+        <a href="index.html" class="text-sm tracking-wide hover:text-accent">HOME</a>
+        <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
+
+        <!-- Shop RTW -->
+ <div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+  
+  <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
+    <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
+    <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
+    <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
+    <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
+    <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
+  </div>
+</div>
+
+
+        <!-- Bespoke -->
+<div class="relative">
+  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI Ivory BESPOKE</button>
+  
+  <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
+              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+    <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
+  </div>
+</div>
+
+
+        <a href="index.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
+        <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
+        <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
+        <a href="faq.html" class="block text-sm">FAQs</a>
+
+      </nav>
+
+      <!-- RIGHT ICONS -->
+      <div class="flex items-center space-x-3 md:space-x-4">
+
+
+       <!-- Cart -->
+<button id="cartBtn" class="p-2 relative hover:text-accent">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+  </svg>
+
+  <!-- Counter -->
+  <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full 
+               flex items-center justify-center hidden">
+    0
+  </span>
+</button>
+
+
+       <!-- Currency Selector (SVG FLAGS) -->
+<div class="relative">
+  <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
+    <option value="USD" data-flag="images/flags/us.svg">USD</option>
+    <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+    <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
+    <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
+  </select>
+
+  <!-- Flag (SVG) -->
+  <img id="currencyFlag" src="images/flags/us.svg" alt="USD" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+
+  <!-- Chevron -->
+  <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+  </svg>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden border-t border-border">
+    <nav class="container mx-auto px-4 py-4 space-y-4">
+      <a href="index.html" class="block text-sm">HOME</a>
+      <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
+
+      <!-- Shop RTW -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          SHOP RTW
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2 space-y-2">
+          <a href="shop.html" class="block text-sm">All</a>
+          <a href="shop.html?category=dresses" class="block text-sm">Dresses</a>
+          <a href="shop.html?category=tops" class="block text-sm">Tops</a>
+          <a href="shop.html?category=skirts" class="block text-sm">Skirts</a>
+          <a href="shop.html?category=trousers" class="block text-sm">Trousers</a>
+          <a href="shop.html?category=africanheritage" class="block text-sm">African Heritage</a>
+        </div>
+      </details>
+
+      <!-- Bespoke -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          BÉMI Ivory Bespoke
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2">
+          <a href="book.html" class="block text-sm">Book a Consultation</a>
+        </div>
+      </details>
+
+      <a href="index.html" class="block text-sm">COLLECTIONS</a>
+      <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
+      <a href="index.html#contact" class="block text-sm">CONTACT US</a>
+      <a href="faq.html" class="block text-sm">FAQs</a>
+
+    </nav>
+  </div>
+</header>
+
+</header>
+
+<!-- MOBILE MENU — completely isolated fix -->
+<script>
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    var menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  });
+</script>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <img src="images/bemi_img (8).jpg" alt="BÉMI IVORY" class="hero-image" onerror="this.style.display='none'">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="reveal" style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem;">About Us</p>
+      <h1 class="font-display reveal reveal-delay-1" style="font-size:clamp(2.5rem,6vw,4.5rem); color:var(--cream); font-weight:300; line-height:1.1; margin-bottom:1.5rem;">
+        Crafted with Purpose.<br>Worn with Intent.
+      </h1>
+      <div class="accent-line reveal reveal-delay-2"></div>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section class="brand-section">
+
+    <!-- Text -->
+    <div class="brand-text-col">
+      <div class="reveal">
+        <p style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem;">The Brand</p>
+        <h2 class="font-display" style="font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:400; line-height:1.2; margin-bottom:1.5rem;">A Luxury Womenswear House<br><em>Born in 2021</em></h2>
+        <div class="accent-line" style="margin-bottom:2rem;"></div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p style="font-size:0.875rem; line-height:1.9; color:var(--muted); margin-bottom:1.25rem;">
+          BÉMI IVORY is a luxury womenswear brand renowned for its elegant silhouettes, intricate detailing, and timeless design philosophy. Rooted in craftsmanship and storytelling, the brand creates pieces that celebrate the strength, grace, and individuality of the modern woman.
+        </p>
+        <p style="font-size:0.875rem; line-height:1.9; color:var(--muted);">
+          Every garment is conceived as more than clothing — it is a narrative, a form of self-expression, and a quiet declaration of identity.
+        </p>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="brand-img-col">
+      <img src="images/bemi_img (10).jpg" alt="BÉMI IVORY Collection"
+        onerror="this.parentElement.classList.add('img-placeholder'); this.style.display='none'; this.parentElement.innerHTML+='<span>BÉMI IVORY</span>'">
+    </div>
+
+  </section>
+
+  
+
+  <!-- Values Strip -->
+  <section class="values-strip">
+    <div class="values-grid">
+      <div class="reveal" style="padding: 1rem 0;">
+        <p style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:0.75rem;">01</p>
+        <h3 class="font-display" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem;">Craftsmanship</h3>
+        <p style="font-size:0.8rem; line-height:1.8; color:rgba(248,244,239,0.55);">Every stitch, seam, and silhouette is considered with precision and care — built to endure.</p>
+      </div>
+      <div class="reveal reveal-delay-1" style="padding: 1rem 0;">
+        <p style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:0.75rem;">02</p>
+        <h3 class="font-display" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem;">Heritage</h3>
+        <p style="font-size:0.8rem; line-height:1.8; color:rgba(248,244,239,0.55);">Culture and identity are woven into each design — celebrating African heritage with global refinement.</p>
+      </div>
+      <div class="reveal reveal-delay-2" style="padding: 1rem 0;">
+        <p style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:0.75rem;">03</p>
+        <h3 class="font-display" style="font-size:1.5rem; font-weight:400; margin-bottom:0.75rem;">Individuality</h3>
+        <p style="font-size:0.8rem; line-height:1.8; color:rgba(248,244,239,0.55);">Fashion is a language — BÉMI IVORY speaks it fluently, in the voice of each woman who wears it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <section class="pull-quote">
+    <div style="max-width:680px; margin:0 auto;">
+      <p class="font-display reveal" style="font-size:clamp(1.6rem,4vw,2.75rem); font-weight:300; font-style:italic; line-height:1.5; color:var(--cream); margin-bottom:2rem;">
+        "Fashion extends beyond clothing — it is a language of confidence, identity, and self-expression."
+      </p>
+      <div class="accent-line reveal reveal-delay-1" style="margin:0 auto;"></div>
+    </div>
+  </section>
+
+
+
+  <!-- Founder Section -->
+  <section class="founder-section">
+
+<!-- Image -->
+    <div class="founder-img-col">
+      <img src="images/bemi_headshot.png" alt="Oritsegbubemi Ogbobine — Founder of BÉMI IVORY"
+        onerror="this.parentElement.classList.add('img-placeholder'); this.style.display='none'; this.parentElement.innerHTML+='<span>Founder</span>'">
+    </div>
+
+    <!-- Text -->
+    <div class="founder-text-col" style="background-color:var(--bg-secondary);">
+      <div class="reveal">
+        <p style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem;">The Founder</p>
+        <h2 class="font-display" style="font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:400; line-height:1.2; margin-bottom:0.5rem;">Oritsegbubemi<br>Ogbobine</h2>
+        <p style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:1.75rem;">Founder & Creative Designer</p>
+        <div class="accent-line" style="margin-bottom:2rem;"></div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <p style="font-size:0.875rem; line-height:1.9; color:var(--muted); margin-bottom:1.25rem;">
+          Driven by a deep passion for creativity, Oritsegbubemi views fashion as a powerful form of self-expression — a vision that inspired the creation of BÉMI IVORY.
+        </p>
+        <p style="font-size:0.875rem; line-height:1.9; color:var(--muted); margin-bottom:2rem;">
+          Through the brand, she has built a house defined by craftsmanship, storytelling, and artistic expression — with a vision rooted in culture, heritage, and refined design.
+        </p>
+      </div>
+
+      <!-- Credentials -->
+      <div class="reveal reveal-delay-2">
+        <p style="font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--charcoal); margin-bottom:1rem;">Academic & Creative Foundation</p>
+
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">BA — Linguistics & Communication Studies</p>
+            <p style="font-size:0.75rem; color:var(--muted); margin-top:2px;">Narrative building & brand identity</p>
+          </div>
+        </div>
+
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">Master's — Public Relations</p>
+            <p style="font-size:0.75rem; color:var(--muted); margin-top:2px;">Storytelling & brand communication</p>
+          </div>
+        </div>
+
+        <div class="credential">
+          <div class="credential-dot"></div>
+          <div>
+            <p style="font-size:0.8rem; font-weight:500; color:var(--charcoal);">Diploma — Fashion Design</p>
+            <p style="font-size:0.75rem; color:var(--muted); margin-top:2px;">Technical craft & design mastery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </section>
+
+  <!-- Footer CTA -->
+  <section style="background-color:var(--cream); padding:6rem 2rem; text-align:center; border-top: 1px solid var(--border);">
+    <div style="max-width:540px; margin:0 auto;">
+      <p class="reveal" style="font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Get in Touch</p>
+      <h2 class="font-display reveal reveal-delay-1" style="font-size:clamp(1.75rem,4vw,2.75rem); font-weight:400; margin-bottom:1.5rem;">We'd Love to Hear From You</h2>
+      <div class="accent-line reveal reveal-delay-2" style="margin:0 auto 2rem;"></div>
+      <div class="reveal reveal-delay-3" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="index.html#contact" style="display:inline-block; padding:0.85rem 2.5rem; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; background-color:var(--charcoal); color:var(--cream); text-decoration:none; transition:background 0.3s, color 0.3s;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='var(--charcoal)'">Contact Us</a>
+        <a href="shop.html" style="display:inline-block; padding:0.85rem 2.5rem; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; border:1px solid var(--charcoal); color:var(--charcoal); text-decoration:none; transition:background 0.3s, color 0.3s;" onmouseover="this.style.backgroundColor='var(--charcoal)'; this.style.color='var(--cream)'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--charcoal)'">Shop the Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
