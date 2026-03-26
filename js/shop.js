@@ -139,7 +139,9 @@ function renderProducts() {
   if (filteredProducts.length === 0) {
     container.innerHTML = `
       <div class="col-span-full text-center py-12">
-        <p class="text-muted-foreground">No products found in this category.</p>
+        <p class="text-3xl font-bold tracking-[0.2em] uppercase bg-gradient-to-r from-yellow-400 via-yellow-600 to-yellow-400 bg-clip-text text-transparent">
+          "Coming Soon"
+        </p>
       </div>
     `;
     return;

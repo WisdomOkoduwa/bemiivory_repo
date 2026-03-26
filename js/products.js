@@ -2,155 +2,139 @@
 const products = [
   {
     id: "1",
-    name: "Silk Midi Dress",
-    price: 385,
-    category: "dresses",
-    description: "An elegant silk midi dress with a flattering silhouette. Perfect for special occasions or elevated everyday wear.",
-    details: "100% Mulberry Silk. Dry clean only. Made in Italy.",
+    name: "Available for Pre-Order",
+    price: 100,
+    category: ["skirts","tops"], 
+    description: "A delicately hand-beaded top with a voluminous skirt blending craftsmanship with graceful volume.",
     images: [
-      "images/bemi_img (1).jpg",
-      "images/bemi_img (2).jpg"
+      "images/waterfall_1.jpeg",
+      "images/waterfall_2.jpeg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "Champagne", hex: "#F5E6D3" },
-      { name: "Black", hex: "#1a1a1a" },
-      { name: "Burgundy", hex: "#722F37" }
+      { name: "Black", hex: "#1a1a1a" }
     ],
     featured: true,
     isNew: true
   },
   {
     id: "2",
-    name: "Cashmere Wrap Cardigan",
-    price: 295,
-    category: "dresses",
-    description: "Luxuriously soft cashmere cardigan with an elegant wrap design. A versatile piece for layering.",
-    details: "100% Cashmere. Hand wash cold. Made in Scotland.",
+    name: "Available for Pre-Order",
+    price: 200,
+    category: ["dresses"], 
+    description: "A layered gown adorned with hand-beaded detailing, reflecting fluid motion and refined craftsmanship.",
     images: [
-      "images/bemi_img (3).jpg",
-      "images/bemi_img (4).jpg"
-    ],
-    sizes: ["XS", "S", "M", "L"],
-    colors: [
-      { name: "Oatmeal", hex: "#D4C4A8" },
-      { name: "Charcoal", hex: "#36454F" }
-    ],
-    featured: false,
-    isNew: false
-  },
-  {
-    id: "3",
-    name: "Wide Leg Trousers",
-    price: 225,
-    category: "tops",
-    description: "High-waisted wide leg trousers with a relaxed, flowing silhouette. Crafted from premium wool blend.",
-    details: "70% Wool, 30% Polyester. Dry clean only. Made in Portugal.",
-    images: [
-      "images/bemi_img (5).jpg",
-      "images/bemi_img (5).jpg"
+      "images/waterfall_3.jpeg",
+      "images/waterfall_4.jpeg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "Black", hex: "#1a1a1a" },
-      { name: "Camel", hex: "#C19A6B" }
+      { name: "Black", hex: "#1a1a1a" }
+    ],
+    featured: true,
+    isNew: true
+  },
+  {
+    id: "3",
+    name: "Available for Pre-Order",
+    price: 300,
+    category: ["dresses"], 
+    description: "A cascading ruffle dress crafted from delicate mesh, creating a sense of sculptural movement and elegance.",
+    images: [
+      "images/waterfall_5.jpeg",
+      "images/waterfall_6.jpeg"
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      { name: "Black", hex: "#1a1a1a" }
     ],
     featured: true,
     isNew: true
   },
   {
     id: "4",
-    name: "Leather Belt",
-    price: 145,
-    category: "tops",
-    description: "Handcrafted leather belt with gold-tone buckle. Timeless elegance for any outfit.",
-    details: "100% Italian Leather. Wipe clean. Made in Italy.",
+    name: "Available for Pre-Order",
+    price: 400,
+    category: ["tops","skirts"], 
+    description: "A cascading ruffle set crafted from delicate mesh, creating a sense of sculptural movement and elegance.",
     images: [
-      "images/bemi_img (7).jpg",
-      "images/bemi_img (8).jpg"
-    ],
-    sizes: ["S", "M", "L"],
-    colors: [
-      { name: "Cognac", hex: "#9A463D" },
-      { name: "Black", hex: "#1a1a1a" }
-    ],
-    featured: false,
-    isNew: false
-  },
-  {
-    id: "5",
-    name: "Linen Blouse",
-    price: 175,
-    category: ["skirts","africanheritage"], 
-    description: "Relaxed linen blouse with delicate button details. Perfect for warm days.",
-    details: "100% Linen. Machine wash cold. Made in France.",
-    images: [
-      "images/bemi_img (9).jpg",
-      "images/bemi_img (10).jpg"
+      "images/waterfall_7.jpeg",
+      "images/waterfall_8.jpeg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "White", hex: "#FFFFFF" },
-      { name: "Sky Blue", hex: "#87CEEB" }
+      { name: "Black", hex: "#1a1a1a" }
+    ],
+    featured: true,
+    isNew: true
+  },
+  {
+    id: "5",
+    name: "Available for Pre-Order",
+    price: 500,
+    category: ["dresses"], 
+    description: "A sculptural pleated dress highlighted with ruffle details and a statement one shoulder rope sleeve.",
+    images: [
+      "images/waterfall_9.jpeg",
+      "images/waterfall_10.jpeg"
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      { name: "Black", hex: "#1a1a1a" }
     ],
     featured: true,
     isNew: true
   },
   {
     id: "6",
-    name: "Satin Evening Gown",
-    price: 550,
-    category: "trousers",
-    description: "Stunning floor-length satin gown with elegant draping. For your most special moments.",
-    details: "100% Silk Satin. Dry clean only. Made in Italy.",
+    name: "Available for Pre-Order",
+    price: 600,
+    category: ["dresses"], 
+    description: "A chantily lace dress carefully adorned with hand-beaded embellishments.",
     images: [
-      "images/bemi_img (11).jpg",
-      "images/bemi_img (12).jpg"
+      "images/waterfall_11.jpeg",
+      "images/waterfall_12.jpeg"
     ],
-    sizes: ["XS", "S", "M", "L"],
+    sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "Navy", hex: "#1B3A57" },
-      { name: "Emerald", hex: "#50C878" }
+      { name: "Black", hex: "#1a1a1a" }
     ],
     featured: true,
     isNew: true
   },
   {
     id: "7",
-    name: "Silk Scarf",
-    price: 125,
-    category: "africanheritage",
-    description: "Hand-painted silk scarf with exclusive print. Add a touch of artistry to any look.",
-    details: "100% Silk. Dry clean only. Made in Italy.",
+    name: "Available for Pre-Order",
+    price: 700,
+    category: ["dresses"], 
+    description: "A statement mesh dress enhanced with soft ruffles, creating a graceful balance between structure and fluidity.",
     images: [
-      "images/bemi_img (13).jpg",
-      "images/bemi_img (14).jpg"
+      "images/waterfall_13.jpeg",
+      "images/waterfall_14.jpeg"
     ],
-    sizes: ["One Size"],
+    sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "Multi", hex: "linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1)" }
+      { name: "Black", hex: "#1a1a1a" }
     ],
     featured: true,
     isNew: true
   },
   {
     id: "8",
-    name: "Tailored Blazer",
-    price: 425,
-    category: "africanheritage",
-    description: "Impeccably tailored blazer with a modern silhouette. The cornerstone of any wardrobe.",
-    details: "98% Wool, 2% Elastane. Dry clean only. Made in England.",
+    name: "Available for Pre-Order",
+    price: 800,
+    category: ["tops","skirts"], 
+    description: "A statement mesh combining cultural heritage with modern elegance, enhanced with soft ruffles, creating a graceful balance between structure and fluidity.",
     images: [
-      "images/bemi_img (15).jpg",
-      "images/bemi_img (1).jpg"
+      "images/waterfall_15.jpeg",
+      "images/waterfall_16.jpeg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
-      { name: "Black", hex: "#1a1a1a" },
-      { name: "Navy", hex: "#1B3A57" }
+      { name: "Black", hex: "#1a1a1a" }
     ],
-    featured: false,
-    isNew: false
+    featured: true,
+    isNew: true
   }
 ];
 
