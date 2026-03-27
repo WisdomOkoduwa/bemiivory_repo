@@ -228,55 +228,158 @@
             </div>
 
             <!-- Payment Method Selection -->
-            <div class="space-y-4">
-              <h2 class="text-lg font-medium flex items-center gap-2">
-                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                </svg>
-                Payment Method
-              </h2>
-              
-              <!-- Paystack Option (Primary) -->
-              <label class="payment-card selected" id="paystackCard">
-                <input type="radio" name="payment" value="paystack" class="hidden" checked>
-                <div class="flex items-start gap-4">
-                  <div class="flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10">
-                    <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="3" y="3" width="7" height="7" rx="1"/>
-                      <rect x="14" y="3" width="7" height="7" rx="1"/>
-                      <rect x="3" y="14" width="7" height="7" rx="1"/>
-                      <rect x="14" y="14" width="7" height="7" rx="1"/>
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-center justify-between mb-1">
-                      <span class="font-medium">Pay with Paystack</span>
-                      <span class="text-xs font-medium text-accent">RECOMMENDED</span>
-                    </div>
-                    <p class="text-sm text-muted-foreground">
-                      Secure payment via card, bank transfer, USSD, or QR code
-                    </p>
-                    <div class="flex gap-2 mt-3">
-                      <span class="px-2 py-1 text-xs bg-secondary rounded border border-border">💳 Card</span>
-                      <span class="px-2 py-1 text-xs bg-secondary rounded border border-border">🏦 Bank</span>
-                      <span class="px-2 py-1 text-xs bg-secondary rounded border border-border">📱 USSD</span>
-                      <span class="px-2 py-1 text-xs bg-secondary rounded border border-border">📲 QR</span>
-                    </div>
-                  </div>
-                </div>
-              </label>
-            </div>
+<div class="space-y-4">
+  <h2 class="text-lg font-medium flex items-center gap-2">
+    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+    </svg>
+    Payment Method
+  </h2>
 
-            <!-- Submit Button -->
-            <button 
-              type="submit" 
-              id="completeOrderBtn"
-              class="w-full bg-foreground text-cream py-4 px-6 rounded-lg text-sm font-medium tracking-wide uppercase hover:bg-accent transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-              </svg>
-              Complete Secure Payment
-            </button>
+  <!-- Option Selector -->
+  <div class="grid grid-cols-2 gap-3">
+    <button type="button" id="opt-ngn" onclick="selectPayment('ngn')"
+      class="text-left border-2 border-accent rounded-xl p-4 bg-accent/5 transition-all">
+      <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center mb-3">
+        <svg class="w-5 h-5 text-blue-700 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 14h2M8 17h5"/>
+        </svg>
+      </div>
+      <p class="text-sm font-medium">Bank Transfer</p>
+      <p class="text-xs text-muted-foreground">Nigerian Naira (NGN)</p>
+      <span class="mt-2 inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">NGN</span>
+    </button>
+
+    <button type="button" id="opt-usd" onclick="selectPayment('usd')"
+      class="text-left border border-border rounded-xl p-4 transition-all hover:border-border/60">
+      <div class="w-9 h-9 rounded-lg bg-green-100 dark:bg-green-900/40 flex items-center justify-center mb-3">
+        <svg class="w-5 h-5 text-green-700 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/><path d="M12 6v1.5M12 16.5V18M9.5 9.5a2.5 2 0 0 1 5 0c0 1.5-2.5 2-2.5 3s2.5 1.5 2.5 3a2.5 2 0 0 1-5 0"/>
+        </svg>
+      </div>
+      <p class="text-sm font-medium">Domiciliary Wire</p>
+      <p class="text-xs text-muted-foreground">US Dollar (USD)</p>
+      <span class="mt-2 inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300">USD</span>
+    </button>
+  </div>
+
+  <!-- NGN Detail Card -->
+  <div id="ngn-detail" class="border border-border rounded-xl overflow-hidden">
+    <div class="flex items-center gap-3 px-4 py-3 border-b border-border">
+      <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+        <svg class="w-4 h-4 text-blue-700 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 14h2M8 17h5"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium">Guaranty Trust Bank (GTB)</p>
+        <p class="text-xs text-muted-foreground">Nigerian Naira account</p>
+      </div>
+    </div>
+    <div class="divide-y divide-border">
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Account name</span>
+        <span class="text-sm font-medium">Bemi Ivory Nig Ltd</span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Account number</span>
+        <span class="text-sm font-medium flex items-center gap-2">
+          0666707663
+          <button onclick="copyVal('0666707663', this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button>
+        </span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Bank code</span>
+        <span class="text-sm font-medium">058 — GTBank</span>
+      </div>
+    </div>
+    <div class="mx-4 mb-4 mt-1 px-3 py-2 bg-yellow-50 dark:bg-yellow-950/30 border-l-2 border-yellow-400 text-xs text-yellow-700 dark:text-yellow-400" style="border-radius: 0 6px 6px 0;">
+      Use your full name or order ID as the narration. Send proof of payment to confirm registration.
+    </div>
+  </div>
+
+  <!-- USD Detail Card -->
+  <div id="usd-detail" class="border border-border rounded-xl overflow-hidden hidden">
+    <div class="flex items-center gap-3 px-4 py-3 border-b border-border">
+      <div class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
+        <svg class="w-4 h-4 text-green-700 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/><path d="M12 6v1.5M12 16.5V18M9.5 9.5a2.5 2 0 0 1 5 0c0 1.5-2.5 2-2.5 3s2.5 1.5 2.5 3a2.5 2 0 0 1-5 0"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-medium">GTB via Citibank New York</p>
+        <p class="text-xs text-muted-foreground">USD domiciliary account</p>
+      </div>
+    </div>
+    <div class="divide-y divide-border">
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Correspondent bank</span>
+        <span class="text-sm font-medium">Citibank, New York</span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Correspondent SWIFT</span>
+        <span class="text-sm font-medium flex items-center gap-2">CITIUS33 <button onclick="copyVal('CITIUS33',this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button></span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Fedwire / ABA no.</span>
+        <span class="text-sm font-medium flex items-center gap-2">021000089 <button onclick="copyVal('021000089',this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button></span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">For credit of</span>
+        <span class="text-sm font-medium">Guaranty Trust Bank Plc, Lagos</span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Beneficiary bank SWIFT</span>
+        <span class="text-sm font-medium flex items-center gap-2">GTBINGLA <button onclick="copyVal('GTBINGLA',this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button></span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">GTBank acct. with Citi NY</span>
+        <span class="text-sm font-medium flex items-center gap-2">36129295 <button onclick="copyVal('36129295',this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button></span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Final credit (beneficiary)</span>
+        <span class="text-sm font-medium">Bemi Ivory Nig Ltd</span>
+      </div>
+      <div class="flex items-center justify-between px-4 py-3">
+        <span class="text-xs text-muted-foreground">Beneficiary NUBAN (GTB)</span>
+        <span class="text-sm font-medium flex items-center gap-2">0666707663 <button onclick="copyVal('0666707663',this)" class="text-[11px] text-accent border border-accent/30 rounded px-2 py-0.5 hover:bg-accent/10">Copy</button></span>
+      </div>
+    </div>
+    <div class="mx-4 mb-4 mt-1 px-3 py-2 bg-green-50 dark:bg-green-950/30 border-l-2 border-green-500 text-xs text-green-700 dark:text-green-400" style="border-radius: 0 6px 6px 0;">
+      Include sender's name and reference. Send remittance advice to confirm registration.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function selectPayment(type) {
+  var ngnOpt = document.getElementById('opt-ngn');
+  var usdOpt = document.getElementById('opt-usd');
+  var ngnDetail = document.getElementById('ngn-detail');
+  var usdDetail = document.getElementById('usd-detail');
+  if (type === 'ngn') {
+    ngnOpt.className = ngnOpt.className.replace('border-border', 'border-2 border-accent bg-accent/5');
+    usdOpt.className = usdOpt.className.replace('border-2 border-green-500 bg-green-50 dark:bg-green-950/20', 'border-border');
+    ngnDetail.classList.remove('hidden');
+    usdDetail.classList.add('hidden');
+  } else {
+    usdOpt.className = usdOpt.className.replace('border-border', 'border-2 border-green-500 bg-green-50 dark:bg-green-950/20');
+    ngnOpt.className = ngnOpt.className.replace('border-2 border-accent bg-accent/5', 'border-border');
+    usdDetail.classList.remove('hidden');
+    ngnDetail.classList.add('hidden');
+  }
+}
+function copyVal(val, btn) {
+  navigator.clipboard.writeText(val);
+  var orig = btn.textContent;
+  btn.textContent = 'Copied!';
+  setTimeout(function(){ btn.textContent = orig; }, 1500);
+}
+</script>
+
+</div>
+
 
             <!-- Security Badges -->
             <div class="flex items-center justify-center gap-6 pt-4 border-t border-border">
