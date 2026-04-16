@@ -1,12 +1,12 @@
 // Initialize currency settings FIRST, before DOMContentLoaded
-window.currentCurrency = 'USD';  // DEFAULT TO USD
+window.currentCurrency = 'NGN';  // DEFAULT TO NGM
 window.currencyRates = {
-  USD: 1,      // Base currency
-  NGN: 1380,   // 1 USD = 1380 NGN
-  GBP: 0.73,   // 1 USD = 0.73 GBP
-  EUR: 0.84    // 1 USD = 0.84 EUR
+  NGN: 1,      // Base currency
+  USD: 0.00074,   // 1 USD = 1344.68 NGN
+  GBP: 0.00055,   // 1 GBP = 1824.39 NGN
+  EUR: 0.00063    // 1 EUR = 1587.50 NGN
 };
-window.currentCurrencyRate = window.currencyRates['USD']; // This should be 1
+window.currentCurrencyRate = window.currencyRates['NGN']; // This should be 1
 
 // ✅ FIXED: single bulletproof init — works regardless of when Cloudflare loads the script
 function initAll() {
@@ -86,7 +86,7 @@ function initFeaturedProducts() {
 // Create Product Card HTML
 function createProductCard(product) {
   const currencyRate = window.currentCurrencyRate || 1;
-  const currency = window.currentCurrency || 'USD';
+  const currency = window.currentCurrency || 'NGN';
   
   return `
     <a href="product.html?id=${product.id}" class="product-card group">
@@ -127,7 +127,7 @@ function initNewsletter() {
 }
 
 // Format price helper
-function formatPrice(amount, currency = 'USD') {
+function formatPrice(amount, currency = 'NGN') {
   if (typeof amount === 'string') amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
   
   if (isNaN(amount)) {

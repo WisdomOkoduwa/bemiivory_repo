@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Helper: update product price based on currency ---
   function updateProductPrice() {
-    const currency = window.currentCurrency || 'USD';
+    const currency = window.currentCurrency || 'NGN';
     const rate = window.currentCurrencyRate || 1;
     productPriceEl.textContent = formatPrice(currentProduct.price * rate, currency);
   }
