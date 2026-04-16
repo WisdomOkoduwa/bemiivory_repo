@@ -174,76 +174,69 @@
         <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
 
         <!-- Shop RTW -->
- <div class="relative">
-  <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
-  
-  <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
-              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
-    <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
-    <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
-    <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
-    <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
-    <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
-    <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
-  </div>
-</div>
-
+        <div class="relative">
+          <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+          <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
+                      peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+            <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
+            <a href="shop.html?category=dresses" class="block px-4 py-2 text-sm hover:bg-muted">Dresses</a>
+            <a href="shop.html?category=tops" class="block px-4 py-2 text-sm hover:bg-muted">Tops</a>
+            <a href="shop.html?category=skirts" class="block px-4 py-2 text-sm hover:bg-muted">Skirts</a>
+            <a href="shop.html?category=trousers" class="block px-4 py-2 text-sm hover:bg-muted">Trousers</a>
+            <a href="shop.html?category=africanheritage" class="block px-4 py-2 text-sm hover:bg-muted">African Heritage</a>
+          </div>
+        </div>
 
         <!-- Bespoke -->
-<div class="relative">
-  <button class="text-sm tracking-wide hover:text-accent peer">BÉMI Ivory BESPOKE</button>
-  
-  <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
-              peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
-    <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
-  </div>
-</div>
+        <div class="relative">
+          <button class="text-sm tracking-wide hover:text-accent peer">BÉMI IVORY BESPOKE</button>
+          <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
+                      peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+            <a href="book.html" class="block px-4 py-2 text-sm hover:bg-muted">Book a Consultation</a>
+          </div>
+        </div>
 
+        <!-- Collection -->
+        <div class="relative">
+          <button class="text-sm tracking-wide hover:text-accent peer">COLLECTIONS</button>
+          <div class="absolute left-0 mt-2 w-56 bg-background border border-border shadow-lg opacity-0 invisible
+                      peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
+            <a href="collection.html#waterfall" class="block px-4 py-2 text-sm hover:bg-muted">Waterfall Collection</a>
+            <a href="collection.html#rebirth" class="block px-4 py-2 text-sm hover:bg-muted">Rebirth Collection</a>
+          </div>
+        </div>
 
-        <a href="index.html" class="text-sm tracking-wide hover:text-accent">COLLECTIONS</a>
-        <a href="index.html#bemiivorywoman" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
+        <a href="woman.html" class="text-sm tracking-wide hover:text-accent">BÉMI IVORY WOMAN</a>
         <a href="index.html#contact" class="text-sm tracking-wide hover:text-accent">CONTACT US</a>
         <a href="faq.html" class="block text-sm">FAQs</a>
-
       </nav>
 
       <!-- RIGHT ICONS -->
       <div class="flex items-center space-x-3 md:space-x-4">
 
+        <!-- Cart -->
+        <button id="cartBtn" class="p-2 relative hover:text-accent">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full 
+                 flex items-center justify-center hidden">0</span>
+        </button>
 
-       <!-- Cart -->
-<button id="cartBtn" class="p-2 relative hover:text-accent">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-  </svg>
-
-  <!-- Counter -->
-  <span id="cartCount" class="absolute -top-1 -right-1 bg-accent text-cream text-xs w-4 h-4 rounded-full 
-               flex items-center justify-center hidden">
-    0
-  </span>
-</button>
-
-
-       <!-- Currency Selector (SVG FLAGS) -->
-<div class="relative">
-  <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
-    <option value="USD" data-flag="images/flags/us.svg">USD</option>
-    <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
-    <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
-    <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
-  </select>
-
-  <!-- Flag (SVG) -->
-  <img id="currencyFlag" src="images/flags/us.svg" alt="USD" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
-
-  <!-- Chevron -->
-  <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-  </svg>
-</div>
-
+        <!-- Currency Selector -->
+        <div class="relative">
+          <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
+            <option value="USD" data-flag="images/flags/us.svg">USD</option>
+            <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+            <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
+            <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
+          </select>
+          <img id="currencyFlag" src="images/flags/us.svg" alt="USD" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+          <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </div>
 
       </div>
     </div>
@@ -276,7 +269,7 @@
       <!-- Bespoke -->
       <details class="group">
         <summary class="flex items-center justify-between cursor-pointer text-sm">
-          BÉMI Ivory Bespoke
+          BÉMI IVORY Bespoke
           <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -286,14 +279,27 @@
         </div>
       </details>
 
-      <a href="index.html" class="block text-sm">COLLECTIONS</a>
-      <a href="index.html#bemiivorywoman" class="block text-sm">BÉMI IVORY WOMAN</a>
+      <!-- Collection -->
+        <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer text-sm">
+          COLLECTIONS
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="ml-4 mt-2">
+          <a href="collection.html#waterfall" class="block px-4 py-2 text-sm hover:bg-muted">Waterfall Collection</a>
+            <a href="collection.html#rebirth" class="block px-4 py-2 text-sm hover:bg-muted">Rebirth Collection</a>
+        </div>
+      </details>
+
+      <a href="woman.html" class="block text-sm">BÉMI IVORY WOMAN</a>
       <a href="index.html#contact" class="block text-sm">CONTACT US</a>
       <a href="faq.html" class="block text-sm">FAQs</a>
-
     </nav>
   </div>
 </header>
+
 
 <!-- MOBILE MENU — completely isolated fix -->
 <script>
@@ -372,21 +378,21 @@
           style="font-family:'Playfair Display',serif; font-size:clamp(2.8rem,7vw,5.5rem); font-weight:300; line-height:1.05; letter-spacing:-.02em;">
         Consultation Services
       </h1>
-          <ul class="reveal d3">
+          <ul class="reveal d3" style="color: #1a1a1a;">
             <li>
-              <strong>Virtual Consultation with Miss Bémi (Creative Director)</strong> — ₦N  
+              <strong>Virtual Consultation with the Creative Director</strong> — ₦300,000 | $200 | 1HR
               <br>
-              <span>You will be required to have someone available to assist in taking your measurements.</span>
+              <span><em>(You will be required to have someone available to assist in taking your measurements.)</em></span>
             </li>
+            <br>
             <li>
-              <strong>In-Store Consultation with Miss Bémi (Creative Director)</strong> — ₦N
+              <strong>In-Store Consultation the Creative Director</strong> — ₦300,000 | $200 | 1HR
             </li>
           </ul>
           <hr class="reveal d3 divider">
 
           <p class="reveal d3">All consultations attract a non-refundable fee, which will be deducted from the total cost of your purchase upon completion of our service.</p>
-
-          <p class="reveal d3">Please note that bespoke pieces start from ₦500,000, while fully hand-embellished designs begin at ₦1,000,000.</p>         
+     
         </div>
       </div>
 
