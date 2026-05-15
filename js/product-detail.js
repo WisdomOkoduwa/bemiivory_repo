@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // wherever you load the product details
-window.currentProduct = product; // ← add this line
+  // Expose current product globally (e.g. for cart or other scripts)
+  window.currentProduct = currentProduct;
 
 });

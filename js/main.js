@@ -1,5 +1,5 @@
 // Initialize currency settings FIRST, before DOMContentLoaded
-window.currentCurrency = 'NGN';  // DEFAULT TO NGM
+window.currentCurrency = 'NGN';  // DEFAULT TO NGN
 window.currencyRates = {
   NGN: 1,      // Base currency
   USD: 0.00074,   // 1 USD = 1344.68 NGN
@@ -8,7 +8,7 @@ window.currencyRates = {
 };
 window.currentCurrencyRate = window.currencyRates['NGN']; // This should be 1
 
-// ✅ FIXED: single bulletproof init — works regardless of when Cloudflare loads the script
+// ✅ FIXED: single bulletproof init — works regardless of how script loads
 function initAll() {
   initMobileMenu();
   initFeaturedProducts();
@@ -57,7 +57,7 @@ function initMobileMenu() {
   const mobileMenu = document.getElementById('mobileMenu');
 
   if (!menuBtn || !mobileMenu) {
-    // Retry once after a short delay (handles Cloudflare async edge cases)
+    // Retry once after a short delay
     setTimeout(initMobileMenu, 100);
     return;
   }
@@ -126,13 +126,13 @@ function initNewsletter() {
   });
 }
 
-// Format price helper
+// ✅ UPDATED Format price helper WITH COMMAS (no .00 for NGN)
 function formatPrice(amount, currency = 'NGN') {
   if (typeof amount === 'string') amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
   
   if (isNaN(amount)) {
     console.error('Invalid amount passed to formatPrice:', amount);
-    return '$0.00';
+    return '$0';
   }
 
   let symbol = '$';
@@ -140,7 +140,11 @@ function formatPrice(amount, currency = 'NGN') {
   if (currency === 'GBP') symbol = '£';
   if (currency === 'EUR') symbol = '€';
 
-  return `${symbol}${amount.toFixed(2)}`;
+  // ✅ NEW: Add commas, remove decimals for NGN
+  const roundedAmount = Math.round(amount);
+  const formattedAmount = roundedAmount.toLocaleString('en-US');
+  
+  return `${symbol}${formattedAmount}`;
 }
 
 function initSizeGuideModal() {
@@ -164,34 +168,36 @@ function initSizeGuideModal() {
   });
 
   // Save Measurements
- confirmBtn.addEventListener('click', () => {
-  const measurements = {
-    bust: document.getElementById('inputBust').value.trim(),
-    waist: document.getElementById('inputWaist').value.trim(),
-    hips: document.getElementById('inputHips').value.trim(),
-    height: document.getElementById('inputHeight').value.trim(),
-    notes: document.getElementById('inputNotes').value.trim(),
-  };
+  confirmBtn.addEventListener('click', () => {
+    const measurements = {
+      bust: document.getElementById('inputBust').value.trim(),
+      waist: document.getElementById('inputWaist').value.trim(),
+      hips: document.getElementById('inputHips').value.trim(),
+      height: document.getElementById('inputHeight').value.trim(),
+      notes: document.getElementById('inputNotes').value.trim(),
+    };
 
-  if (!measurements.bust || !measurements.waist || !measurements.hips) {
-    alert('Please enter at least your Bust, Waist, and Hips measurements.');
-    return;
-  }
+    if (!measurements.bust || !measurements.waist || !measurements.hips) {
+      alert('Please enter at least your Bust, Waist, and Hips measurements.');
+      return;
+    }
 
-  // Save to localStorage
-  localStorage.setItem('bemi_measurements', JSON.stringify(measurements));
+    // Save to localStorage
+    localStorage.setItem('bemi_measurements', JSON.stringify(measurements));
 
-  // ✅ Tell the product page that size is now 'Custom'
-  if (typeof window.selectedSize !== 'undefined') {
-    window.selectedSize = 'Custom';
-  }
+    // ✅ Tell the product page that size is now 'Custom'
+    if (typeof window.selectedSize !== 'undefined') {
+      window.selectedSize = 'Custom';
+    }
 
-  // ✅ Visually deselect all size buttons and mark Custom as active
-  document.querySelectorAll('.size-btn').forEach(btn => {
-    btn.classList.remove('active');
+    // ✅ Visually deselect all size buttons and mark Custom as active
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    if (typeof Cart !== 'undefined' && Cart.showToast) {
+      Cart.showToast('Measurements saved — click Add to Bag to continue.');
+    }
+    modal.classList.add('hidden');
   });
-
-  Cart.showToast('Measurements saved — click Add to Bag to continue.');
-  modal.classList.add('hidden');
-});
 }

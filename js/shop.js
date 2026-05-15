@@ -1,3 +1,5 @@
+console.log('🔥 UPDATED shop.js LOADED - Version with commas!');
+
 // Shop Page JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -90,25 +92,25 @@ function updatePageTitle() {
   titleEl.textContent = titles[currentCategory] || 'Shop All';
 }
 
-// Format price helper (uses global currency from main.js)
-function formatPrice(amount, currency = null) {
-  // Use global currency from main.js if available, otherwise fallback
-  const currentCurrency = currency || window.currentCurrency || 'USD';
-  
+// Format price helper with comma separators
+function formatPrice(amount, currency = 'NGN') {
   if (typeof amount === 'string') amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
   
   if (isNaN(amount)) {
     console.error('Invalid amount passed to formatPrice:', amount);
-    return '$0.00';
+    return '$0';
   }
 
   let symbol = '$';
-  if (currentCurrency === 'NGN') symbol = '₦';
-  if (currentCurrency === 'GBP') symbol = '£';
-  if (currentCurrency === 'EUR') symbol = '€';
+  if (currency === 'NGN') symbol = '₦';
+  if (currency === 'GBP') symbol = '£';
+  if (currency === 'EUR') symbol = '€';
 
-  // Don't multiply here - amount is already converted
-  return `${symbol}${amount.toFixed(2)}`;
+  // THIS IS THE NEW CODE - adds commas
+  const roundedAmount = Math.round(amount);
+  const formattedAmount = roundedAmount.toLocaleString('en-US');
+  
+  return `${symbol}${formattedAmount}`;
 }
 
 // Sort Products

@@ -1,25 +1,6 @@
 // ====== cart.js ======
 
-// --- Price Formatting ---
-function formatPrice(amount, currency = null) {
-  const currentCurrency = currency || window.currentCurrency || 'USD';
-
-  if (typeof amount === 'string') {
-    amount = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
-  }
-
-  if (isNaN(amount)) {
-    console.error('Invalid amount passed to formatPrice:', amount);
-    return '$0.00';
-  }
-
-  let symbol = '$';
-  if (currentCurrency === 'NGN') symbol = '₦';
-  if (currentCurrency === 'GBP') symbol = '£';
-  if (currentCurrency === 'EUR') symbol = '€';
-
-  return `${symbol}${amount.toFixed(2)}`;
-}
+// REMOVED the old formatPrice function - now using the one from main.js
 
 // ====== Cart Management ======
 const Cart = {
@@ -37,6 +18,8 @@ const Cart = {
   },
 
   addItem(product, size = 'Default', color = 'Default', sizeDetails = {}, quantity = 1) {
+    console.log('Adding to cart:', { product, size, color, sizeDetails, quantity });
+    
     const key = size === 'Custom' ? JSON.stringify(sizeDetails) : size;
 
     const existingIndex = this.items.findIndex(
@@ -182,13 +165,19 @@ const Cart = {
 
   setupEventListeners() {
     const cartBtn = document.getElementById('cartBtn');
-    cartBtn?.addEventListener('click', () => this.openCart());
+    if (cartBtn) {
+      cartBtn.addEventListener('click', () => this.openCart());
+    }
 
     const closeBtn = document.getElementById('closeCart');
-    closeBtn?.addEventListener('click', () => this.closeCart());
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => this.closeCart());
+    }
 
     const overlay = document.getElementById('cartOverlay');
-    overlay?.addEventListener('click', () => this.closeCart());
+    if (overlay) {
+      overlay.addEventListener('click', () => this.closeCart());
+    }
   },
 
   openCart() {
@@ -214,7 +203,7 @@ const Cart = {
     if (existing) existing.remove();
 
     const toast = document.createElement('div');
-    toast.className = 'toast fixed bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-cream px-4 py-2 rounded shadow-lg opacity-0 transition-opacity';
+    toast.className = 'toast fixed bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-cream px-4 py-2 rounded shadow-lg opacity-0 transition-opacity z-50';
     toast.textContent = message;
     document.body.appendChild(toast);
 
