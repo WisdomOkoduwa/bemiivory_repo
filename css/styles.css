@@ -167,3 +167,7 @@ ul.reveal li::before {
 #mobileMenu:not(.hidden) {
   display: block;
 }
+
+.productDetails{
+  white-space: pre-line;
+}
