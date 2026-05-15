@@ -293,7 +293,7 @@
         <span class="text-sm font-medium">058 — GTBank</span>
       </div>
     </div>
-    <div class="mx-4 mb-4 mt-1 px-3 py-2 bg-yellow-50 dark:bg-yellow-950/30 border-l-2 border-yellow-400 text-xs text-yellow-700 dark:text-yellow-400" style="border-radius: 0 6px 6px 0;">
+    <div class="mx-4 mb-4 mt-1 px-3 py-2 bg-yellow-50 dark:bg-yellow-950/30 border-l-2 border-yellow-400 text-xs text-charcoal-700 dark:text-yellow-400" style="border-radius: 0 6px 6px 0;">
       Use your full name or order ID as the narration. Send proof of payment to confirm registration.
     </div>
   </div>
@@ -381,22 +381,6 @@ function copyVal(val, btn) {
 </div>
 
 
-            <!-- Security Badges -->
-            <div class="flex items-center justify-center gap-6 pt-4 border-t border-border">
-              <div class="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                Secure Payment
-              </div>
-              <div class="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-                SSL Encrypted
-              </div>
-            </div>
-
           </form>
         </div>
 
@@ -465,11 +449,176 @@ function copyVal(val, btn) {
               </div>
             </div>
           </div>
+
+          <!-- Confirm Payment Button -->
+          <div class="mt-6 space-y-3">
+            <button
+              id="confirmPaymentBtn"
+              type="button"
+              onclick="confirmPayment()"
+              class="w-full py-4 px-6 bg-accent text-cream font-medium tracking-widest uppercase text-sm rounded-lg hover:opacity-90 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed">
+              <svg id="confirmIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span id="confirmBtnText">Click to Confirm Payment</span>
+            </button>
+
+            <!-- Status Message -->
+            <div id="paymentStatus" class="hidden"></div>
+
+            <!-- Security Badges -->
+            <div class="flex items-center justify-center gap-6 pt-2 border-t border-border">
+              <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Secure Payment
+              </div>
+              <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                SSL Encrypted
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
   </main>
+
+  <!-- Continue Shopping / You Might Also Like -->
+  <section class="py-16 border-t border-border bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+
+      <!-- Section Header -->
+      <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.25em] uppercase text-accent mb-2">Discover More</p>
+        <h2 class="font-display text-2xl md:text-3xl mb-3">You Might Also Like</h2>
+        <p class="text-sm text-muted-foreground max-w-md mx-auto">
+          Explore the full BÉMI IVORY collection — handcrafted pieces designed for the modern African woman.
+        </p>
+      </div>
+
+      <!-- Category Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <a href="shop.html?category=dresses" class="group relative overflow-hidden rounded-xl bg-background border border-border hover:border-accent hover:shadow-md transition-all duration-300 p-5 text-center">
+          <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 130 170" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Bodice -->
+            <path d="M48 14 C44 15,32 20,26 32 L20 54 C28 53,37 52,43 53 L41 72 C41 75,40 78,40 81 L90 81 C90 78,89 75,89 72 L87 53 C93 52,102 53,110 54 L104 32 C98 20,86 15,82 14 C77 10,74 8,65 8 C56 8,53 10,48 14 Z"/>
+            <!-- Sweetheart neckline -->
+            <path d="M50 15 Q65 27 65 27 Q65 27 80 15"/>
+            <!-- Straps -->
+            <path d="M50 15 L53 8"/><path d="M80 15 L77 8"/>
+            <!-- Waist -->
+            <path d="M41 81 Q65 73 89 81" stroke-opacity="0.6"/>
+            <!-- Flared skirt -->
+            <path d="M40 81 C37 90,30 105,22 120 C14 136,5 152,0 165 L130 165 C125 152,116 136,108 120 C100 105,93 90,90 81 Z"/>
+            <!-- Drape folds -->
+            <path d="M58 83 C56 96,52 116,44 148" stroke-opacity="0.4" stroke-width="1"/>
+            <path d="M65 83 C65 98,64 118,62 150" stroke-opacity="0.4" stroke-width="1"/>
+            <path d="M72 83 C74 96,78 116,86 148" stroke-opacity="0.4" stroke-width="1"/>
+            <!-- Hem scallop -->
+            <path d="M0 165 Q10 160,20 165 Q30 170,40 165 Q50 160,65 165 Q80 170,90 165 Q100 160,110 165 Q120 170,130 165" stroke-width="1.2"/>
+            <!-- Centre seam -->
+            <line x1="65" y1="27" x2="65" y2="81" stroke-dasharray="2 2" stroke-opacity="0.4" stroke-width="0.8"/>
+          </svg>
+          </div>
+          <p class="text-sm font-medium">Dresses</p>
+          <span class="mt-3 inline-block text-[10px] tracking-widest uppercase text-accent group-hover:underline">Shop Now →</span>
+        </a>
+
+        <a href="shop.html?category=skirts" class="group relative overflow-hidden rounded-xl bg-background border border-border hover:border-accent hover:shadow-md transition-all duration-300 p-5 text-center">
+          <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 130 140" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Waistband -->
+            <rect x="30" y="8" width="70" height="12" rx="2"/>
+            <line x1="30" y1="16" x2="100" y2="16" stroke-opacity="0.4" stroke-width="0.8"/>
+            <circle cx="65" cy="13" r="1.5" stroke-width="1.2"/>
+            <!-- A-line skirt -->
+            <path d="M32 20 C29 34,20 58,11 82 C4 100,0 118,0 128 L130 128 C130 118,126 100,119 82 C110 58,101 34,98 20 Z"/>
+            <!-- Pleat lines -->
+            <path d="M55 21 C52 36,46 62,36 95" stroke-opacity="0.45" stroke-width="1"/>
+            <path d="M62 21 C60 38,56 65,50 100" stroke-opacity="0.45" stroke-width="1"/>
+            <path d="M65 21 C65 40,65 68,65 103" stroke-opacity="0.45" stroke-width="1"/>
+            <path d="M68 21 C70 38,74 65,80 100" stroke-opacity="0.45" stroke-width="1"/>
+            <path d="M75 21 C78 36,84 62,94 95" stroke-opacity="0.45" stroke-width="1"/>
+            <!-- Hem scallop -->
+            <path d="M0 128 Q8 123,16 128 Q24 133,32 128 Q40 123,48 128 Q56 133,65 128 Q74 133,82 128 Q90 123,98 128 Q106 133,114 128 Q122 123,130 128" stroke-width="1.2"/>
+          </svg>
+          </div>
+          <p class="text-sm font-medium">Skirts</p>
+          <span class="mt-3 inline-block text-[10px] tracking-widest uppercase text-accent group-hover:underline">Shop Now →</span>
+        </a>
+
+        <a href="shop.html?category=tops" class="group relative overflow-hidden rounded-xl bg-background border border-border hover:border-accent hover:shadow-md transition-all duration-300 p-5 text-center">
+          <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors">
+           <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 100 120" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Neckline / V-neck -->
+          <path d="M30 12 L50 32 L70 12" />
+          
+          <!-- Shoulders / arm openings -->
+          <path d="M18 18 C18 18, 24 28, 30 32" />
+          <path d="M82 18 C82 18, 76 28, 70 32" />
+          
+          <!-- Left armhole curve -->
+          <path d="M30 32 C28 42, 26 58, 24 72 C22 86, 20 96, 18 108" />
+          
+          <!-- Right armhole curve -->
+          <path d="M70 32 C72 42, 74 58, 76 72 C78 86, 80 96, 82 108" />
+          
+          <!-- Side seams -->
+          <path d="M18 108 L18 112" />
+          <path d="M82 108 L82 112" />
+          
+          <!-- Bottom hem -->
+          <path d="M18 112 L82 112" />
+          
+          <!-- Center front dart / seam line -->
+          <path d="M50 32 L50 112" stroke-opacity="0.3" stroke-width="1" />
+          
+          <!-- Waist shaping darts (princess seam hints) -->
+          <path d="M38 48 C36 60, 36 72, 38 84" stroke-opacity="0.4" stroke-width="1" />
+          <path d="M62 48 C64 60, 64 72, 62 84" stroke-opacity="0.4" stroke-width="1" />
+          
+          <!-- Subtle bust dart lines -->
+          <path d="M38 44 L45 38" stroke-opacity="0.35" stroke-width="1" />
+          <path d="M62 44 L55 38" stroke-opacity="0.35" stroke-width="1" />
+        </svg>
+          </div>
+          <p class="text-sm font-medium">Tops</p>
+          <span class="mt-3 inline-block text-[10px] tracking-widest uppercase text-accent group-hover:underline">Shop Now →</span>
+        </a>
+
+        <a href="shop.html?category=new" class="group relative overflow-hidden rounded-xl bg-background border border-border hover:border-accent hover:shadow-md transition-all duration-300 p-5 text-center">
+          <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="text-sm font-medium">New-In</p>
+          <span class="mt-3 inline-block text-[10px] tracking-widest uppercase text-accent group-hover:underline">Shop Now →</span>
+        </a>
+      </div>
+
+      <!-- Continue Shopping CTA -->
+      <div class="text-center">
+        <a href="shop.html"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-cream text-sm font-medium tracking-widest uppercase rounded-lg hover:bg-accent transition-colors duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          Continue Shopping
+        </a>
+        <p class="text-xs text-muted-foreground mt-4">
+          Free shipping on orders above ₦150,000 · Custom sizing available on all pieces
+        </p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="bg-foreground text-cream py-8 mt-12">
@@ -488,6 +637,172 @@ function copyVal(val, btn) {
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/checkout.js"></script>
-  
+
+  <script>
+    // ── Confirm Payment → Formspree ────────────────────────────────────────────
+    // Replace YOUR_FORM_ID below with your actual Formspree endpoint ID.
+    // Create one free at https://formspree.io/
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgodwwqa';
+
+    async function confirmPayment() {
+      const btn     = document.getElementById('confirmPaymentBtn');
+      const btnText = document.getElementById('confirmBtnText');
+      const icon    = document.getElementById('confirmIcon');
+      const status  = document.getElementById('paymentStatus');
+
+      // ── 1. Validate required fields ─────────────────────────────────────────
+      const requiredIds = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'postalCode', 'country'];
+      let firstInvalid = null;
+
+      requiredIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (!el.value.trim()) {
+          el.classList.add('border-red-400', 'ring-2', 'ring-red-200');
+          if (!firstInvalid) firstInvalid = el;
+        } else {
+          el.classList.remove('border-red-400', 'ring-2', 'ring-red-200');
+        }
+      });
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        showStatus('error', 'Please fill in all required fields before confirming.');
+        return;
+      }
+
+      // ── 2. Gather customer details ───────────────────────────────────────────
+      const get = id => (document.getElementById(id)?.value?.trim() || '');
+
+      const firstName  = get('firstName');
+      const lastName   = get('lastName');
+      const email      = get('email');
+      const phone      = get('phone');
+      const address    = get('address');
+      const apartment  = get('apartment');
+      const city       = get('city');
+      const postalCode = get('postalCode');
+      const countryEl  = document.getElementById('country');
+      const country    = countryEl ? (countryEl.options[countryEl.selectedIndex]?.text || countryEl.value) : '';
+
+      const fullAddress = [address, apartment, city, postalCode, country].filter(Boolean).join(', ');
+
+      // ── 3. Determine selected payment method ─────────────────────────────────
+      const ngnVisible = !document.getElementById('ngn-detail')?.classList.contains('hidden');
+      const paymentMethod = ngnVisible
+        ? 'Bank Transfer – Nigerian Naira (GTBank · Acc: 0666707663)'
+        : 'Domiciliary Wire – US Dollar (GTB via Citibank NY · SWIFT: CITIUS33)';
+
+      // ── 4. Build order summary from DOM ─────────────────────────────────────
+      // Reads whatever checkout.js has rendered into #orderItems
+      const orderItemsEl = document.getElementById('orderItems');
+      let orderLines = '';
+      if (orderItemsEl) {
+        // Try structured rows first (elements with data-item-name / data-item-price attrs)
+        const rows = orderItemsEl.querySelectorAll('[data-item-name]');
+        if (rows.length) {
+          rows.forEach(row => {
+            const name  = row.dataset.itemName  || '';
+            const price = row.dataset.itemPrice || '';
+            const qty   = row.dataset.itemQty   || '1';
+            orderLines += `${name} × ${qty} — ${price}\n`;
+          });
+        } else {
+          // Fallback: grab readable text from each direct child element
+          orderItemsEl.querySelectorAll(':scope > *').forEach(child => {
+            const line = child.innerText.replace(/\s+/g, ' ').trim();
+            if (line) orderLines += line + '\n';
+          });
+        }
+      }
+      if (!orderLines) orderLines = '(Order items not available — please attach proof of payment)';
+
+      const subtotal = document.getElementById('subtotal')?.textContent?.trim() || 'N/A';
+      const total    = document.getElementById('total')?.textContent?.trim()    || 'N/A';
+
+      // ── 5. Build Formspree payload ───────────────────────────────────────────
+      const payload = {
+        'Customer Name':    `${firstName} ${lastName}`,
+        'Email':            email,
+        'Phone':            phone,
+        'Shipping Address': fullAddress,
+        'Payment Method':   paymentMethod,
+        'Order Summary':    orderLines.trim(),
+        'Subtotal':         subtotal,
+        'Total':            total,
+        'Submitted At':     new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' }),
+      };
+
+      // ── 6. Submit ────────────────────────────────────────────────────────────
+      btn.disabled = true;
+      icon.innerHTML = `
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="40" stroke-dashoffset="0" style="animation:spin 0.8s linear infinite;transform-origin:center"/>`;
+      btnText.textContent = 'Submitting order…';
+
+      // Ensure the keyframe exists
+      if (!document.getElementById('spin-style')) {
+        const s = document.createElement('style');
+        s.id = 'spin-style';
+        s.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+        document.head.appendChild(s);
+      }
+
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body:    JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          // Clear the cart after successful order submission
+          if (typeof Cart !== 'undefined') Cart.clear();
+
+          // Success state
+          btn.classList.remove('bg-accent');
+          btn.classList.add('bg-charcoal');
+          icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>`;
+          btnText.textContent = 'Order Confirmed ✓';
+
+          showStatus('success',
+            `<strong>Thank you, ${firstName}!</strong> Your order details have been received. ` +
+            `We'll confirm your payment and reach out to <em>${email}</em> shortly.`
+          );
+        } else {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body?.error || `Server responded with ${res.status}`);
+        }
+
+      } catch (err) {
+        btn.disabled = false;
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>`;
+        btnText.textContent = 'Click to Confirm Payment';
+        showStatus('error',
+          'Something went wrong — your order was not submitted. Please try again or contact us on WhatsApp.'
+        );
+        console.error('[Formspree]', err);
+      }
+    }
+
+    function showStatus(type, html) {
+      const el = document.getElementById('paymentStatus');
+      el.classList.remove('hidden');
+      const isSuccess = type === 'success';
+      el.innerHTML = `
+        <div class="flex items-start gap-3 px-4 py-3 rounded-lg border
+          ${isSuccess
+            ? 'bg-green-50 border-green-200 text-green-800'
+            : 'bg-red-50 border-red-200 text-red-800'}
+          text-sm leading-relaxed animate-slide-in">
+          <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            ${isSuccess
+              ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+              : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+          </svg>
+          <p>${html}</p>
+        </div>`;
+    }
+  </script>
+
 </body>
 </html>

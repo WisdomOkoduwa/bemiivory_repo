@@ -71,9 +71,9 @@
         <a href="index.html" class="text-sm tracking-wide hover:text-accent">HOME</a>
         <a href="shop.html?category=new" class="text-sm tracking-wide hover:text-accent">NEW IN</a>
 
-        <!-- Shop RTW -->
+        <!-- SHOP -->
         <div class="relative">
-          <button class="text-sm tracking-wide hover:text-accent peer">SHOP RTW</button>
+          <button class="text-sm tracking-wide hover:text-accent peer">SHOP</button>
           <div class="absolute left-0 mt-2 w-52 bg-background border border-border shadow-lg opacity-0 invisible 
                       peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-200">
             <a href="shop.html" class="block px-4 py-2 text-sm hover:bg-muted">All</a>
@@ -125,12 +125,12 @@
         <!-- Currency Selector -->
         <div class="relative">
           <select id="currencySelect" class="appearance-none text-xs border border-border rounded pl-9 pr-6 py-1 bg-transparent focus:outline-none">
-            <option value="USD" data-flag="images/flags/us.svg">USD</option>
             <option value="NGN" data-flag="images/flags/ng.svg">NGN</option>
+            <option value="USD" data-flag="images/flags/us.svg">USD</option>
             <option value="GBP" data-flag="images/flags/uk.svg">GBP</option>
             <option value="EUR" data-flag="images/flags/eu.svg">EUR</option>
           </select>
-          <img id="currencyFlag" src="images/flags/us.svg" alt="USD" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
+          <img id="currencyFlag" src="images/flags/ng.svg" alt="NGN" class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4"/>
           <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -146,10 +146,10 @@
       <a href="index.html" class="block text-sm">HOME</a>
       <a href="shop.html?category=new" class="block text-sm">NEW IN</a>
 
-      <!-- Shop RTW -->
+      <!-- SHOP -->
       <details class="group">
         <summary class="flex items-center justify-between cursor-pointer text-sm">
-          SHOP RTW
+          SHOP
           <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -226,7 +226,7 @@
       <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
         <!-- Product Images -->
         <div class="space-y-4">
-          <div class="aspect-[3/4] overflow-hidden bg-secondary">
+          <div class=overflow-hidden bg-secondary">
             <img id="mainImage" src="" alt="" class="w-full h-full object-cover">
           </div>
           <div id="thumbnails" class="grid grid-cols-4 gap-2">
@@ -237,12 +237,12 @@
         <!-- Product Info -->
         <div class="space-y-6">
           <div>
+            <p id="productDescription" class="text-muted-foreground leading-relaxed"></p>
+            <br>
+            <p id="productPrice" class="text-2xl"></p>
             <p id="productCategory" class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2"></p>
-            <h1 id="productName" class="font-display text-2xl md:text-3xl mb-2"></h1>
-            <p id="productPrice" class="text-xl"></p>
+            <h1 id="productName" class="font-display text-xl md:text-3xl mb-2"></h1>
           </div>
-
-          <p id="productDescription" class="text-muted-foreground leading-relaxed"></p>
 
           <!-- Size Selection -->
 <div class="space-y-4">
@@ -281,12 +281,12 @@
           <div class="border-t border-border pt-6 space-y-4">
             <details class="group">
               <summary class="flex justify-between items-center cursor-pointer py-2">
-                <span class="text-sm font-medium">Product Details</span>
+                <span class="text-sm font-medium">Details & Care</span>
                 <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
                 </svg>
               </summary>
-              <div id="productDetails" class="text-sm text-muted-foreground py-2"></div>
+              <div id="productDetails" class="text-sm text-muted-foreground py-2 whitespace-pre-line"></div>
             </details>
             <details class="group border-t border-border">
               <summary class="flex justify-between items-center cursor-pointer py-2">
@@ -296,8 +296,18 @@
                 </svg>
               </summary>
               <div class="text-sm text-muted-foreground py-2">
-                <p>Free worldwide shipping on orders over $200. Standard delivery 5-7 business days.</p>
-                <p class="mt-2">Free returns within 30 days of purchase.</p>
+                <p>Local Delivery (Within Nigeria) Delivered within 2-5 business days after order has been processed.<br><br>
+                
+                 International Delivery ( Worldwide) Delivered within 5-7 business days after order has been processed.<br><br>
+                  
+                  Orders shipped internationally may be subject to customs duties, taxes or local charges upon arrival in
+                  the destination country.<br><br>
+                  
+                  BÉMI IVORY is not responsible for these charges. All applicable customs duties,
+                  taxes or local charges upon arrival in the destination country are the responsibility of the customer.<br><br>
+                  
+                  We do not offer exchanges or refunds for custom orders. Please inspect your BÉMI IVORY product immediately
+                  upon receipt and notify us within 24 hours via email or WhatsApp for any defects.</p>
               </div>
             </details>
           </div>
@@ -323,16 +333,6 @@
       </button>
     </div>
   </div>
-
-  <!-- Related Products -->
-  <section class="py-16 bg-secondary">
-    <div class="container mx-auto px-4 md:px-6">
-      <h2 class="font-display text-2xl text-center mb-8">You May Also Like</h2>
-      <div id="relatedProducts" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <!-- Related products inserted by JS -->
-      </div>
-    </div>
-  </section>
 
   <!-- CART DRAWER -->
 <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
@@ -390,14 +390,8 @@
 
 
 <script src="js/main.js"></script>
-
-<!-- 1. Product data first -->
 <script src="js/products.js"></script>
-
-<!-- 2. Cart functionality next -->
 <script src="js/cart.js"></script>
-
-<!-- 3. Product page logic -->
 <script src="js/product-detail.js"></script>
 
 
